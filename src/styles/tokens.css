@@ -2,9 +2,10 @@
   color-scheme: light;
 
   --default-font:
-    var(--font-roboto), system-ui, -apple-system, "Segoe UI", sans-serif;
-  --heading-font: var(--font-poppins), system-ui, sans-serif;
-  --accent-font: var(--font-raleway), system-ui, sans-serif;
+    var(--font-open-sans), system-ui, -apple-system, "Segoe UI", sans-serif;
+  --heading-font: var(--font-raleway), system-ui, sans-serif;
+  --nav-font: var(--font-poppins), system-ui, sans-serif;
+  --accent-font: var(--font-poppins), system-ui, sans-serif;
 
   --background-color: #ffffff;
   --default-color: #444444;
@@ -15,6 +16,8 @@
   --surface-color: #ffffff;
   --contrast-color: #ffffff;
   --border-color: #dcecf4;
+  --light-background-color: #f3f9fd;
+  --soft-background-color: #f7fbfe;
 
   --nav-color: #444444;
   --nav-hover-color: #176c9f;
@@ -34,7 +37,12 @@
 }
 
 .light-background {
-  --background-color: #f4fafd;
+  --background-color: var(--light-background-color);
+  --surface-color: #ffffff;
+}
+
+.soft-background {
+  --background-color: var(--soft-background-color);
   --surface-color: #ffffff;
 }
 

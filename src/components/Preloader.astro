@@ -1,0 +1,59 @@
+<div class="preloader" aria-hidden="true" data-preloader>
+  <span></span>
+</div>
+
+<script>
+  import { initPreloader } from "../scripts/preloader";
+
+  initPreloader();
+</script>
+
+<style>
+  .preloader {
+    position: fixed;
+    z-index: 1200;
+    top: 0;
+    right: 0;
+    left: 0;
+    height: 0.2rem;
+    overflow: hidden;
+    background: transparent;
+    opacity: 1;
+    pointer-events: none;
+    transition: opacity 180ms ease;
+  }
+
+  .preloader span {
+    display: block;
+    width: 38%;
+    height: 100%;
+    border-radius: 999px;
+    background: var(--accent-color);
+    animation: preloader-progress 900ms ease-in-out infinite alternate;
+    transform-origin: left;
+  }
+
+  .preloader.is-hidden {
+    opacity: 0;
+  }
+
+  :global(.no-js) .preloader {
+    display: none;
+  }
+
+  @keyframes preloader-progress {
+    from {
+      transform: translateX(-100%) scaleX(0.45);
+    }
+
+    to {
+      transform: translateX(265%) scaleX(1);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .preloader {
+      display: none;
+    }
+  }
+</style>

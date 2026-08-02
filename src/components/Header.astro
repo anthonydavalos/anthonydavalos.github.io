@@ -1,0 +1,291 @@
+---
+interface Props {
+  currentPath: string;
+}
+
+const { currentPath } = Astro.props;
+const navigation = [
+  { label: "Inicio", href: "/", current: currentPath === "/" },
+  { label: "Áreas", href: "/#enfoque", current: false },
+];
+---
+
+<header class="site-header" data-site-header>
+  <div class="container site-header__inner">
+    <a
+      class="site-brand"
+      href="/"
+      aria-label="Anthony Davalos, página de inicio"
+    >
+      <span>Anthony</span> Davalos
+    </a>
+
+    <button
+      class="nav-toggle"
+      type="button"
+      aria-label="Abrir navegación"
+      aria-controls="primary-navigation"
+      aria-expanded="false"
+      data-nav-toggle
+    >
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+    <nav
+      id="primary-navigation"
+      class="primary-navigation"
+      aria-label="Navegación principal"
+      data-primary-navigation
+    >
+      <ul>
+        {
+          navigation.map((item) => (
+            <li>
+              <a
+                href={item.href}
+                aria-current={item.current ? "page" : undefined}
+              >
+                {item.label}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+      <a class="header-cta" href="/#enfoque">Mi enfoque</a>
+    </nav>
+  </div>
+</header>
+
+<script>
+  import { initHeader } from "../scripts/header";
+
+  initHeader();
+</script>
+
+<style>
+  .site-header {
+    position: sticky;
+    z-index: 1000;
+    top: 0;
+    width: 100%;
+    border-bottom: 1px solid transparent;
+    background: #ffffff;
+    transition:
+      border-color var(--transition-fast),
+      box-shadow var(--transition-fast);
+  }
+
+  .site-header.is-scrolled {
+    border-bottom-color: var(--border-color);
+    box-shadow: 0 0.65rem 2rem rgb(34 34 34 / 8%);
+  }
+
+  .site-header__inner {
+    display: flex;
+    min-height: 4.7rem;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+  }
+
+  .site-brand {
+    color: var(--heading-color);
+    font-family: var(--heading-font);
+    font-size: clamp(1.2rem, 2.4vw, 1.55rem);
+    font-weight: 700;
+    letter-spacing: -0.035em;
+    line-height: 1;
+    text-decoration: none;
+    white-space: nowrap;
+  }
+
+  .site-brand span {
+    color: var(--accent-strong);
+  }
+
+  .site-brand:hover {
+    color: var(--heading-color);
+  }
+
+  .primary-navigation,
+  .primary-navigation ul {
+    display: flex;
+    align-items: center;
+  }
+
+  .primary-navigation {
+    gap: 1.8rem;
+  }
+
+  .primary-navigation ul {
+    gap: 0.25rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .primary-navigation li {
+    margin: 0;
+  }
+
+  .primary-navigation li a {
+    display: inline-flex;
+    min-height: 2.75rem;
+    align-items: center;
+    padding: 0.45rem 0.8rem;
+    color: var(--nav-color);
+    font-family: var(--nav-font);
+    font-size: 0.86rem;
+    font-weight: 500;
+    text-decoration: none;
+  }
+
+  .primary-navigation li a:hover,
+  .primary-navigation li a[aria-current="page"] {
+    color: var(--nav-hover-color);
+  }
+
+  .header-cta {
+    display: inline-flex;
+    min-height: 2.75rem;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem 1.25rem;
+    border: 0.125rem solid var(--accent-strong);
+    border-radius: 999px;
+    background: var(--accent-strong);
+    color: var(--contrast-color);
+    font-family: var(--nav-font);
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-decoration: none;
+    white-space: nowrap;
+  }
+
+  .header-cta:hover {
+    border-color: color-mix(in srgb, var(--accent-strong), #000 14%);
+    background: color-mix(in srgb, var(--accent-strong), #000 14%);
+    color: var(--contrast-color);
+  }
+
+  .nav-toggle {
+    display: none;
+    width: 2.75rem;
+    height: 2.75rem;
+    padding: 0.65rem;
+    border: 1px solid var(--border-color);
+    border-radius: 50%;
+    background: var(--surface-color);
+  }
+
+  .nav-toggle span {
+    display: block;
+    width: 100%;
+    height: 0.125rem;
+    border-radius: 999px;
+    background: var(--heading-color);
+    transition:
+      transform var(--transition-fast),
+      opacity var(--transition-fast);
+  }
+
+  .nav-toggle span + span {
+    margin-top: 0.28rem;
+  }
+
+  .nav-toggle[aria-expanded="true"] span:first-child {
+    transform: translateY(0.41rem) rotate(45deg);
+  }
+
+  .nav-toggle[aria-expanded="true"] span:nth-child(2) {
+    opacity: 0;
+  }
+
+  .nav-toggle[aria-expanded="true"] span:last-child {
+    transform: translateY(-0.41rem) rotate(-45deg);
+  }
+
+  @media (max-width: 61.998rem) {
+    .site-header__inner {
+      min-height: 4.25rem;
+    }
+
+    .nav-toggle {
+      display: block;
+      flex: 0 0 auto;
+    }
+
+    .primary-navigation {
+      position: absolute;
+      top: calc(100% + 0.5rem);
+      right: 1rem;
+      left: 1rem;
+      display: grid;
+      padding: 1rem;
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      background: #ffffff;
+      box-shadow: var(--shadow-soft);
+      opacity: 0;
+      transform: translateY(-0.5rem);
+      visibility: hidden;
+    }
+
+    .primary-navigation[data-open="true"] {
+      opacity: 1;
+      transform: translateY(0);
+      visibility: visible;
+    }
+
+    .primary-navigation ul {
+      display: grid;
+      gap: 0.15rem;
+    }
+
+    .primary-navigation li a {
+      width: 100%;
+      padding-inline: 0.65rem;
+      border-radius: 0.6rem;
+    }
+
+    .primary-navigation li a:hover,
+    .primary-navigation li a[aria-current="page"] {
+      background: var(--soft-background-color);
+    }
+
+    .header-cta {
+      width: 100%;
+    }
+
+    :global(.no-js) .nav-toggle {
+      display: none;
+    }
+
+    :global(.no-js) .primary-navigation {
+      position: static;
+      display: flex;
+      padding: 0;
+      border: 0;
+      box-shadow: none;
+      opacity: 1;
+      transform: none;
+      visibility: visible;
+    }
+
+    :global(.no-js) .primary-navigation ul {
+      display: flex;
+    }
+
+    :global(.no-js) .header-cta {
+      display: none;
+    }
+  }
+
+  @media (max-width: 35rem) {
+    :global(.no-js) .primary-navigation li:not(:first-child) {
+      display: none;
+    }
+  }
+</style>

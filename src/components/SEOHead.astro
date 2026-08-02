@@ -1,0 +1,24 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  canonicalPath?: string;
+  noindex?: boolean;
+}
+
+const {
+  title,
+  description,
+  canonicalPath = Astro.url.pathname,
+  noindex = false,
+} = Astro.props;
+const canonicalURL = new URL(canonicalPath, Astro.site ?? Astro.url.origin);
+---
+
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width" />
+<meta name="description" content={description} />
+<meta name="theme-color" content="#ffffff" />
+{noindex && <meta name="robots" content="noindex, nofollow" />}
+<link rel="canonical" href={canonicalURL} />
+<title>{title}</title>

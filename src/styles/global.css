@@ -25,6 +25,10 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
+body[data-nav-open="true"] {
+  overflow: hidden;
+}
+
 body,
 button,
 a {
@@ -72,6 +76,27 @@ p {
   outline-offset: 0.22rem;
 }
 
+.skip-link {
+  position: fixed;
+  z-index: 1100;
+  top: 0.75rem;
+  left: 0.75rem;
+  padding: 0.65rem 1rem;
+  border-radius: var(--radius-sm);
+  background: var(--heading-color);
+  color: var(--contrast-color);
+  font-family: var(--nav-font);
+  font-size: 0.82rem;
+  font-weight: 600;
+  text-decoration: none;
+  transform: translateY(calc(-100% - 1rem));
+}
+
+.skip-link:focus {
+  color: var(--contrast-color);
+  transform: translateY(0);
+}
+
 ::selection {
   color: var(--heading-color);
   background: color-mix(in srgb, var(--accent-color), transparent 72%);
@@ -89,7 +114,7 @@ p {
   padding-block: var(--section-space);
   color: var(--default-color);
   background: var(--background-color);
-  scroll-margin-top: 5rem;
+  scroll-margin-top: 6rem;
 }
 
 .eyebrow {
@@ -158,7 +183,7 @@ p {
   border-radius: 999px;
   background: var(--accent-strong);
   color: var(--contrast-color);
-  font-family: var(--heading-font);
+  font-family: var(--nav-font);
   font-size: 0.92rem;
   font-weight: 600;
   letter-spacing: 0.02em;
