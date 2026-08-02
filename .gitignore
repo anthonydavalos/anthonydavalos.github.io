@@ -1,0 +1,29 @@
+# Private local material
+_references/
+pasted-text.txt
+
+# Personal documents and local archives
+*.pdf
+*.zip
+
+# Environment and secrets
+.env
+.env.*
+!.env.example
+
+# Dependencies and generated output
+node_modules/
+.astro/
+dist/
+coverage/
+
+# Logs and caches
+*.log
+.cache/
+.eslintcache
+
+# Editor and operating-system files
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
