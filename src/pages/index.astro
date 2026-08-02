@@ -27,7 +27,7 @@ const focusAreas = [
   <section id="inicio" class="hero section" aria-labelledby="hero-title">
     <div class="container">
       <div class="row align-items-center gy-5 gx-lg-5">
-        <div class="col-lg-7">
+        <div class="col-lg-7" data-aos="fade-up">
           <p class="eyebrow">Portafolio profesional</p>
           <h1 id="hero-title" class="hero__title">
             Anthony <span>Davalos</span>
@@ -40,7 +40,7 @@ const focusAreas = [
           <a class="button" href="#enfoque">Conocer mi enfoque</a>
         </div>
 
-        <div class="col-lg-5">
+        <div class="col-lg-5" data-aos="fade-left" data-aos-delay="80">
           <div class="hero-visual">
             <p class="hero-visual__label">Ingeniería aplicada</p>
             <ul class="hero-visual__list">
@@ -70,7 +70,7 @@ const focusAreas = [
     aria-labelledby="focus-title"
   >
     <div class="container">
-      <div class="section-heading">
+      <div class="section-heading" data-aos="fade-up">
         <p class="eyebrow section-heading__rule">Áreas de trabajo</p>
         <h2 id="focus-title">
           Ingeniería de software, automatización y seguridad
@@ -84,7 +84,11 @@ const focusAreas = [
       <div class="row g-4">
         {
           focusAreas.map((area, index) => (
-            <div class="col-md-6 col-lg-4">
+            <div
+              class="col-md-6 col-lg-4"
+              data-aos="fade-up"
+              data-aos-delay={String(index * 70)}
+            >
               <article class="focus-card">
                 <span class="focus-card__number" aria-hidden="true">
                   {String(index + 1).padStart(2, "0")}

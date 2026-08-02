@@ -4,14 +4,16 @@
   --default-font:
     var(--font-open-sans), system-ui, -apple-system, "Segoe UI", sans-serif;
   --heading-font: var(--font-raleway), system-ui, sans-serif;
-  --nav-font: var(--font-poppins), system-ui, sans-serif;
-  --accent-font: var(--font-poppins), system-ui, sans-serif;
+  --nav-font: var(--font-raleway), system-ui, sans-serif;
+  --accent-font: var(--font-raleway), system-ui, sans-serif;
 
   --background-color: #ffffff;
   --default-color: #444444;
   --heading-color: #222222;
+  --subtitle-color: #484848;
   --accent-color: #3498db;
   --accent-strong: #176c9f;
+  --accent-on-color: #102c3d;
   --accent-soft: #eaf6fc;
   --surface-color: #ffffff;
   --contrast-color: #ffffff;

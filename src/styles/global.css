@@ -162,14 +162,16 @@ p {
 }
 
 .hero__title span {
-  color: var(--accent-strong);
+  color: var(--heading-color);
 }
 
 .hero__lead {
   max-width: 39rem;
   margin-bottom: 2rem;
-  color: color-mix(in srgb, var(--default-color), transparent 14%);
+  color: var(--subtitle-color);
+  font-family: var(--heading-font);
   font-size: clamp(1.05rem, 2vw, 1.32rem);
+  font-weight: 400;
   line-height: 1.65;
 }
 
@@ -179,10 +181,10 @@ p {
   align-items: center;
   justify-content: center;
   padding: 0.72rem 1.7rem;
-  border: 0.125rem solid var(--accent-strong);
+  border: 0.125rem solid var(--accent-color);
   border-radius: 999px;
-  background: var(--accent-strong);
-  color: var(--contrast-color);
+  background: var(--accent-color);
+  color: var(--accent-on-color);
   font-family: var(--nav-font);
   font-size: 0.92rem;
   font-weight: 600;
@@ -191,9 +193,9 @@ p {
 }
 
 .button:hover {
-  border-color: color-mix(in srgb, var(--accent-strong), #000 14%);
-  background: color-mix(in srgb, var(--accent-strong), #000 14%);
-  color: var(--contrast-color);
+  border-color: color-mix(in srgb, var(--accent-color), #000 14%);
+  background: color-mix(in srgb, var(--accent-color), #000 14%);
+  color: #071a25;
   box-shadow: 0 0.8rem 1.7rem rgb(23 108 159 / 24%);
 }
 
@@ -264,7 +266,7 @@ p {
 .hero-visual__footer {
   position: relative;
   margin: 1.5rem 0 0;
-  color: color-mix(in srgb, var(--default-color), transparent 20%);
+  color: var(--default-color);
   font-size: 0.82rem;
 }
 
@@ -326,7 +328,12 @@ p {
 
 .focus-card p {
   margin-bottom: 0;
-  color: color-mix(in srgb, var(--default-color), transparent 12%);
+  color: var(--default-color);
+}
+
+html:not(.aos-enabled) [data-aos] {
+  opacity: 1 !important;
+  transform: none !important;
 }
 
 @media (max-width: 991.98px) {
@@ -381,5 +388,10 @@ p {
   *::after {
     scroll-behavior: auto !important;
     transition-duration: 0.01ms !important;
+  }
+
+  [data-aos] {
+    opacity: 1 !important;
+    transform: none !important;
   }
 }
