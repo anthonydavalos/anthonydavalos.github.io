@@ -183,8 +183,8 @@ p {
   padding: 0.72rem 1.7rem;
   border: 0.125rem solid var(--accent-color);
   border-radius: 999px;
-  background: var(--accent-color);
-  color: var(--accent-on-color);
+  background: var(--surface-color);
+  color: var(--accent-color);
   font-family: var(--nav-font);
   font-size: 0.92rem;
   font-weight: 600;
@@ -193,9 +193,9 @@ p {
 }
 
 .button:hover {
-  border-color: color-mix(in srgb, var(--accent-color), #000 14%);
-  background: color-mix(in srgb, var(--accent-color), #000 14%);
-  color: #071a25;
+  border-color: var(--accent-color);
+  background: var(--accent-color);
+  color: var(--contrast-color);
   box-shadow: 0 0.8rem 1.7rem rgb(23 108 159 / 24%);
 }
 

@@ -23,5 +23,13 @@ export const initVisualInteractions = async (): Promise<void> => {
     );
   }
 
+  if (document.querySelector("[data-project-grid]")) {
+    initializers.push(
+      import("./projects").then(({ initProjectFilters }) =>
+        initProjectFilters(),
+      ),
+    );
+  }
+
   await Promise.allSettled(initializers);
 };

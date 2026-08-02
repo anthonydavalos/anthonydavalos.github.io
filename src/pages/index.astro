@@ -1,5 +1,7 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import ProjectCarousel from "../components/ProjectCarousel.astro";
+import { featuredProjects } from "../data/projects";
 
 const focusAreas = [
   {
@@ -102,4 +104,6 @@ const focusAreas = [
       </div>
     </div>
   </section>
+
+  <ProjectCarousel projects={featuredProjects} />
 </BaseLayout>

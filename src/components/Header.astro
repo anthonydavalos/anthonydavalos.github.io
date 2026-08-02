@@ -7,6 +7,11 @@ const { currentPath } = Astro.props;
 const navigation = [
   { label: "Inicio", href: "/", current: currentPath === "/" },
   { label: "Áreas", href: "/#enfoque", current: false },
+  {
+    label: "Proyectos",
+    href: "/proyectos/",
+    current: currentPath === "/proyectos/",
+  },
 ];
 ---
 
@@ -155,8 +160,8 @@ const navigation = [
     padding: 0.5rem 1.25rem;
     border: 0.125rem solid var(--accent-color);
     border-radius: 999px;
-    background: var(--accent-color);
-    color: var(--accent-on-color);
+    background: #ffffff;
+    color: var(--accent-color);
     font-family: var(--nav-font);
     font-size: 0.8rem;
     font-weight: 600;
@@ -165,9 +170,9 @@ const navigation = [
   }
 
   .header-cta:hover {
-    border-color: color-mix(in srgb, var(--accent-color), #000 14%);
-    background: color-mix(in srgb, var(--accent-color), #000 14%);
-    color: #071a25;
+    border-color: var(--accent-color);
+    background: var(--accent-color);
+    color: var(--contrast-color);
   }
 
   .nav-toggle {
@@ -175,7 +180,7 @@ const navigation = [
     width: 2.75rem;
     height: 2.75rem;
     padding: 0.65rem;
-    border: 1px solid var(--border-color);
+    border: 1px solid var(--accent-color);
     border-radius: 50%;
     background: var(--surface-color);
   }
