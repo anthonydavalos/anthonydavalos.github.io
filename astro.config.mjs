@@ -4,7 +4,7 @@ import { defineConfig, fontProviders } from "astro/config";
 const googleFonts = fontProviders.google();
 
 export default defineConfig({
-  site: "https://anthonydavalos.github.io",
+  site: "https://mcofit.com",
   output: "static",
   trailingSlash: "always",
   integrations: [sitemap()],
