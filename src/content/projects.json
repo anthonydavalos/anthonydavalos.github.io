@@ -44,7 +44,7 @@
     "status": "draft",
     "filters": ["filter-software", "filter-draft"],
     "imageSrc": "/images/projects/subastas-backend-architecture.jpg",
-    "imageAlt": "Arquitectura de API backend y catálogo de subastas en una consola técnica",
+    "imageAlt": "Panel de subastas de vehículos con catálogo, pujas y estado de servicios",
     "repositoryUrl": "https://github.com/anthonydavalos/subastas_backend"
   },
   {
