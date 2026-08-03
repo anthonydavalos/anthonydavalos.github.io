@@ -16,7 +16,11 @@
     "check": "astro check",
     "lint": "eslint .",
     "format": "prettier --write .",
-    "format:check": "prettier --check ."
+    "format:check": "prettier --check .",
+    "verify:licenses": "node scripts/verify-licenses.mjs",
+    "verify:pages": "node scripts/verify-pages.mjs",
+    "quality": "npm run format:check && npm run lint && npm run check && npm run build && npm run verify:licenses && npm run verify:pages",
+    "security": "npm audit --omit=dev --audit-level=high"
   },
   "dependencies": {
     "@astrojs/sitemap": "3.7.3",
