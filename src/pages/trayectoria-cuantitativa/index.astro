@@ -1,9 +1,17 @@
 ---
 import AchievementCard from "../../components/AchievementCard.astro";
+import CurrentQuantitativeRecord from "../../components/CurrentQuantitativeRecord.astro";
 import MetricCounter from "../../components/MetricCounter.astro";
 import PageIntro from "../../components/PageIntro.astro";
-import { achievements } from "../../data/achievements";
+import {
+  achievements,
+  currentQuantitativeRecord,
+} from "../../data/achievements";
 import BaseLayout from "../../layouts/BaseLayout.astro";
+
+const achievementsNewestFirst = [...achievements].sort(
+  (first, second) => Number(second.year) - Number(first.year),
+);
 ---
 
 <BaseLayout
@@ -95,22 +103,40 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 
   <section
     class="section light-background"
-    aria-labelledby="achievements-title"
+    aria-labelledby="current-record-title"
   >
+    <div class="container">
+      <div class="section-heading" data-aos="fade-up">
+        <p class="eyebrow section-heading__rule">Continuidad cuantitativa</p>
+        <h2 id="current-record-title">
+          Seguimiento de una cuenta real en 2026
+        </h2>
+        <p>
+          La trayectoria no se limita a los reconocimientos históricos. Esta
+          cuenta documenta actividad actual y separa las métricas de riesgo de
+          Myfxbook del resultado neto de depósitos, retiros y saldo.
+        </p>
+      </div>
+
+      <CurrentQuantitativeRecord record={currentQuantitativeRecord} />
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="achievements-title">
     <div class="container">
       <div class="section-heading" data-aos="fade-up">
         <p class="eyebrow section-heading__rule">Reconocimientos</p>
         <h2 id="achievements-title">Resultados históricos y evidencia</h2>
         <p>
-          Las cifras se reproducen como fueron publicadas para cada competencia.
-          Los enlaces antiguos se conservan incluso cuando su contenido ya no
-          está disponible.
+          Las competencias se presentan desde la más reciente hasta la primera.
+          Las cifras se reproducen como fueron publicadas y los enlaces antiguos
+          se conservan incluso cuando su contenido ya no está disponible.
         </p>
       </div>
 
       <div class="achievement-list">
         {
-          achievements.map((achievement, index) => (
+          achievementsNewestFirst.map((achievement, index) => (
             <AchievementCard achievement={achievement} index={index} />
           ))
         }
