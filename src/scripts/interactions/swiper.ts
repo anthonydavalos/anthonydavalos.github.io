@@ -25,10 +25,12 @@ export const initSwipers = async (): Promise<void> => {
       return;
     }
 
-    const previous = carousel.querySelector<HTMLElement>(
+    const controlsScope =
+      carousel.closest<HTMLElement>(".project-carousel") ?? carousel;
+    const previous = controlsScope.querySelector<HTMLElement>(
       "[data-swiper-previous]",
     );
-    const next = carousel.querySelector<HTMLElement>("[data-swiper-next]");
+    const next = controlsScope.querySelector<HTMLElement>("[data-swiper-next]");
 
     carousel.dataset.enhanced = "true";
     new Swiper(carousel, {

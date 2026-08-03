@@ -1,0 +1,202 @@
+---
+import type { Achievement } from "../data/achievements";
+
+import EvidenceSources from "./EvidenceSources.astro";
+
+interface Props {
+  achievement: Achievement;
+  index: number;
+}
+
+const { achievement, index } = Astro.props;
+const facts = [
+  ["Organización", achievement.organizer],
+  ["Alias", achievement.alias],
+  ["Modalidad", achievement.competitionType],
+  ["Periodo", achievement.period],
+  ["Retorno publicado", achievement.returnValue],
+  ["Participación", achievement.participants],
+  ["Premio", achievement.prize],
+];
+---
+
+<article
+  id={achievement.id}
+  class="achievement-card"
+  data-aos="fade-up"
+  data-aos-delay={String(index * 60)}
+>
+  <header class="achievement-card__header">
+    <div>
+      <p class="achievement-card__year">{achievement.year}</p>
+      <h2>{achievement.title}</h2>
+    </div>
+    <span class="achievement-card__position">{achievement.position}</span>
+  </header>
+
+  <p class="achievement-card__summary">{achievement.summary}</p>
+
+  <dl class="achievement-card__facts">
+    {
+      facts.map(([label, value]) => (
+        <div>
+          <dt>{label}</dt>
+          <dd>{value}</dd>
+        </div>
+      ))
+    }
+  </dl>
+
+  <section class="achievement-card__reading" aria-label="Lectura profesional">
+    <h3>Lectura profesional</h3>
+    <p>{achievement.professionalReading}</p>
+  </section>
+
+  {
+    achievement.discrepancy && (
+      <aside class="achievement-card__discrepancy">
+        <h3>Contexto y discrepancias conocidas</h3>
+        <p>{achievement.discrepancy}</p>
+      </aside>
+    )
+  }
+
+  <EvidenceSources sources={achievement.sources} />
+</article>
+
+<style>
+  .achievement-card {
+    padding: clamp(1.4rem, 4vw, 2.4rem);
+    scroll-margin-top: 6rem;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    background: var(--surface-color);
+    box-shadow: var(--shadow-card);
+  }
+
+  .achievement-card__header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1.5rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .achievement-card__year {
+    margin-bottom: 0.45rem;
+    color: var(--accent-color);
+    font-family: var(--accent-font);
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+  }
+
+  .achievement-card h2 {
+    max-width: 31rem;
+    margin-bottom: 0;
+    font-size: clamp(1.55rem, 4vw, 2.25rem);
+    font-weight: 700;
+    letter-spacing: -0.035em;
+  }
+
+  .achievement-card__position {
+    flex: 0 0 auto;
+    padding: 0.48rem 0.8rem;
+    border: 1px solid var(--accent-color);
+    border-radius: 999px;
+    background: #ffffff;
+    color: var(--accent-color);
+    font-family: var(--nav-font);
+    font-size: 0.76rem;
+    font-weight: 700;
+  }
+
+  .achievement-card__summary {
+    max-width: 55rem;
+    margin-bottom: 1.6rem;
+    color: var(--subtitle-color);
+    font-family: var(--heading-font);
+    font-size: clamp(1rem, 2vw, 1.12rem);
+    line-height: 1.7;
+  }
+
+  .achievement-card__facts {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1px;
+    overflow: hidden;
+    margin-bottom: 1.6rem;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    background: var(--border-color);
+  }
+
+  .achievement-card__facts div {
+    min-width: 0;
+    padding: 1rem;
+    background: var(--soft-background-color);
+  }
+
+  .achievement-card__facts div:last-child:nth-child(odd) {
+    grid-column: 1 / -1;
+  }
+
+  .achievement-card__facts dt {
+    margin-bottom: 0.3rem;
+    color: var(--default-color);
+    font-family: var(--nav-font);
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .achievement-card__facts dd {
+    margin: 0;
+    color: var(--heading-color);
+    font-family: var(--heading-font);
+    font-size: 0.94rem;
+    font-weight: 600;
+  }
+
+  .achievement-card__reading,
+  .achievement-card__discrepancy {
+    margin-bottom: 1.5rem;
+    padding: 1.15rem 1.25rem;
+    border-left: 0.2rem solid var(--accent-color);
+    background: var(--light-background-color);
+  }
+
+  .achievement-card__discrepancy {
+    border-left-color: #d5a237;
+    background: #fff9ed;
+  }
+
+  .achievement-card__reading h3,
+  .achievement-card__discrepancy h3 {
+    margin-bottom: 0.45rem;
+    font-size: 0.95rem;
+    font-weight: 700;
+  }
+
+  .achievement-card__reading p,
+  .achievement-card__discrepancy p {
+    margin: 0;
+    font-size: 0.88rem;
+  }
+
+  @media (max-width: 47.998rem) {
+    .achievement-card__header {
+      align-items: flex-start;
+      flex-direction: column;
+    }
+
+    .achievement-card__facts {
+      grid-template-columns: 1fr;
+    }
+
+    .achievement-card__facts div:last-child:nth-child(odd) {
+      grid-column: auto;
+    }
+  }
+</style>
