@@ -1,0 +1,120 @@
+---
+import type { Project } from "../data/projects";
+
+import ProjectCard from "./ProjectCard.astro";
+
+interface Props {
+  projects: Project[];
+  title?: string;
+}
+
+const { projects, title = "Proyectos destacados" } = Astro.props;
+---
+
+<section class="project-carousel" aria-labelledby="featured-projects-title">
+  <div class="container">
+    <div class="section-heading" data-aos="fade-up">
+      <p class="eyebrow section-heading__rule">Proyectos</p>
+      <h2 id="featured-projects-title">{title}</h2>
+      <p>Una selección inicial de trabajo en software y automatización.</p>
+    </div>
+
+    <div
+      class="swiper project-carousel__viewport"
+      data-swiper
+      aria-label="Carrusel de proyectos destacados"
+      data-aos="fade-up"
+    >
+      <div class="swiper-wrapper">
+        {
+          projects.map((project) => (
+            <div class="swiper-slide">
+              <ProjectCard project={project} />
+            </div>
+          ))
+        }
+      </div>
+    </div>
+
+    <div class="project-carousel__controls" aria-label="Controles del carrusel">
+      <button type="button" data-swiper-previous aria-label="Proyecto anterior">
+        Anterior
+      </button>
+      <button type="button" data-swiper-next aria-label="Proyecto siguiente">
+        Siguiente
+      </button>
+    </div>
+    <p class="project-carousel__link">
+      <a href="/proyectos/">Ver todos los proyectos</a>
+    </p>
+  </div>
+</section>
+
+<style>
+  .project-carousel {
+    padding-block: var(--section-space);
+    background: var(--background-color);
+  }
+
+  .project-carousel__viewport .swiper-wrapper {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 18rem), 1fr));
+    gap: 1.5rem;
+  }
+
+  .project-carousel__viewport[data-enhanced="true"] .swiper-wrapper {
+    display: flex;
+    gap: 0;
+  }
+
+  .project-carousel__viewport[data-enhanced="true"] .swiper-slide {
+    height: auto;
+  }
+
+  .project-carousel__controls {
+    display: flex;
+    justify-content: center;
+    gap: 0.75rem;
+    margin-top: 1.5rem;
+  }
+
+  .project-carousel__controls button {
+    min-height: 2.75rem;
+    padding: 0.5rem 1rem;
+    border: 0.125rem solid var(--accent-color);
+    border-radius: 999px;
+    background: #ffffff;
+    color: var(--accent-color);
+    font-family: var(--nav-font);
+    font-size: 0.82rem;
+    font-weight: 600;
+  }
+
+  .project-carousel__controls button:hover:not(:disabled),
+  .project-carousel__controls button:focus-visible:not(:disabled) {
+    background: var(--accent-color);
+    color: var(--contrast-color);
+  }
+
+  .project-carousel__controls button:disabled,
+  .project-carousel__controls button.swiper-button-disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+  }
+
+  .project-carousel__link {
+    margin: 1.25rem 0 0;
+    text-align: center;
+  }
+
+  .project-carousel__link a {
+    color: var(--accent-color);
+    font-family: var(--nav-font);
+    font-size: 0.85rem;
+    font-weight: 600;
+  }
+
+  :global(.no-js) .project-carousel__controls {
+    display: none;
+  }
+</style>

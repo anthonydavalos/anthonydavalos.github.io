@@ -1,0 +1,52 @@
+[
+  {
+    "id": "streamliner-ai",
+    "order": 10,
+    "title": "Streamliner AI",
+    "summary": "Automatización de flujos y asistencia operativa enfocada en procesos claros y repetibles.",
+    "category": "Automatización",
+    "status": "featured",
+    "filters": ["filter-featured", "filter-automation"],
+    "monogram": "SA"
+  },
+  {
+    "id": "autopilot",
+    "order": 20,
+    "title": "Autopilot",
+    "summary": "Sistema de automatización orientado a tareas repetitivas, trazabilidad y control operativo.",
+    "category": "Automatización",
+    "status": "featured",
+    "filters": ["filter-featured", "filter-automation"],
+    "monogram": "AP"
+  },
+  {
+    "id": "qr-code-component",
+    "order": 30,
+    "title": "QR Code Component",
+    "summary": "Componente de interfaz para integrar la generación de códigos QR en productos web.",
+    "category": "Software y APIs",
+    "status": "archived",
+    "filters": ["filter-software", "filter-archived"],
+    "monogram": "QR"
+  },
+  {
+    "id": "subastas-backend",
+    "order": 40,
+    "title": "Subastas Backend",
+    "summary": "Backend en borrador; su publicación queda pendiente del saneamiento completo del repositorio.",
+    "category": "Software y APIs",
+    "status": "draft",
+    "filters": ["filter-software", "filter-draft"],
+    "monogram": "SB"
+  },
+  {
+    "id": "betsniper",
+    "order": 50,
+    "title": "BetSniper",
+    "summary": "Proyecto en borrador que permanece fuera de destacados hasta completar su revisión.",
+    "category": "Revisión en curso",
+    "status": "draft",
+    "filters": ["filter-draft"],
+    "monogram": "BS"
+  }
+]

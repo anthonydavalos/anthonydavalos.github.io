@@ -1,0 +1,224 @@
+---
+import { getCollection } from "astro:content";
+
+import AchievementCard from "../../components/AchievementCard.astro";
+import CurrentQuantitativeRecord from "../../components/CurrentQuantitativeRecord.astro";
+import MetricCounter from "../../components/MetricCounter.astro";
+import PageIntro from "../../components/PageIntro.astro";
+import type { Achievement, QuantitativeRecord } from "../../data/achievements";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+const achievementRecords = (await getCollection("achievements")).map(
+  ({ data }) => data,
+);
+const achievementsNewestFirst = achievementRecords
+  .filter((record): record is Achievement => record.kind === "competition")
+  .sort((first, second) => Number(second.year) - Number(first.year));
+const currentQuantitativeRecords = achievementRecords.filter(
+  (record): record is QuantitativeRecord => record.kind === "current-record",
+);
+const [currentQuantitativeRecord] = currentQuantitativeRecords;
+
+if (!currentQuantitativeRecord || currentQuantitativeRecords.length !== 1) {
+  throw new Error("Expected exactly one current quantitative record");
+}
+---
+
+<BaseLayout
+  title="Trayectoria cuantitativa | Anthony Davalos"
+  description="Contexto y evidencia de la trayectoria cuantitativa histórica de Anthony Davalos."
+>
+  <section class="section soft-background" aria-labelledby="quantitative-title">
+    <div class="container">
+      <PageIntro
+        eyebrow="Trayectoria cuantitativa"
+        title="Tres primeros lugares, documentados con contexto"
+        titleId="quantitative-title"
+        description="Entre 2017 y 2020, Anthony Davalos obtuvo el primer lugar en tres competencias de trading. Cada resultado se presenta con su modalidad, cifras completas, fuentes y discrepancias conocidas."
+      />
+
+      <div class="row g-4 quantitative-metrics" data-aos="fade-up">
+        <div class="col-md-4">
+          <MetricCounter value={3} displayValue="3" label="primeros lugares" />
+        </div>
+        <div class="col-md-4">
+          <MetricCounter
+            value={2000}
+            displayValue="2,000"
+            suffix="+"
+            label="participantes en el mayor campo documentado"
+          />
+        </div>
+        <div class="col-md-4">
+          <MetricCounter
+            value={4}
+            displayValue="4"
+            label="entidades organizadoras involucradas"
+          />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="trajectory-reading-title">
+    <div class="container">
+      <div class="section-heading" data-aos="fade-up">
+        <p class="eyebrow section-heading__rule">Valor profesional</p>
+        <h2 id="trajectory-reading-title">
+          Una trayectoria de análisis y ejecución
+        </h2>
+        <p>
+          Más allá de una cifra aislada, estos reconocimientos reflejan trabajo
+          cuantitativo, adaptación a reglas distintas y decisiones sostenidas
+          bajo presión. La evidencia se conserva con una lectura responsable y
+          verificable.
+        </p>
+      </div>
+
+      <div class="row g-4">
+        <div class="col-md-4" data-aos="fade-up">
+          <article class="focus-card">
+            <span class="focus-card__number" aria-hidden="true">01</span>
+            <h3>Análisis cuantitativo</h3>
+            <p>
+              Interpretación de escenarios, medición de resultados y ajuste de
+              decisiones dentro de reglas definidas.
+            </p>
+          </article>
+        </div>
+        <div class="col-md-4" data-aos="fade-up" data-aos-delay="60">
+          <article class="focus-card">
+            <span class="focus-card__number" aria-hidden="true">02</span>
+            <h3>Disciplina operativa</h3>
+            <p>
+              Ejecución consistente durante periodos competitivos, con atención
+              al ritmo, la exposición y el objetivo.
+            </p>
+          </article>
+        </div>
+        <div class="col-md-4" data-aos="fade-up" data-aos-delay="120">
+          <article class="focus-card">
+            <span class="focus-card__number" aria-hidden="true">03</span>
+            <h3>Trazabilidad</h3>
+            <p>
+              Resultados acompañados por fuentes, fechas de consulta y
+              diferencias entre publicaciones históricas e instantáneas
+              actuales.
+            </p>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section
+    class="section light-background"
+    aria-labelledby="current-record-title"
+  >
+    <div class="container">
+      <div class="section-heading" data-aos="fade-up">
+        <p class="eyebrow section-heading__rule">Continuidad cuantitativa</p>
+        <h2 id="current-record-title">
+          Seguimiento de una cuenta real en 2026
+        </h2>
+        <p>
+          La trayectoria no se limita a los reconocimientos históricos. Esta
+          cuenta documenta actividad actual y separa las métricas de riesgo de
+          Myfxbook del resultado neto de depósitos, retiros y saldo.
+        </p>
+      </div>
+
+      <CurrentQuantitativeRecord record={currentQuantitativeRecord} />
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="achievements-title">
+    <div class="container">
+      <div class="section-heading" data-aos="fade-up">
+        <p class="eyebrow section-heading__rule">Reconocimientos</p>
+        <h2 id="achievements-title">Resultados históricos y evidencia</h2>
+        <p>
+          Las competencias se presentan desde la más reciente hasta la primera.
+          Las cifras se reproducen como fueron publicadas y los enlaces antiguos
+          se conservan incluso cuando su contenido ya no está disponible.
+        </p>
+      </div>
+
+      <div class="achievement-list">
+        {
+          achievementsNewestFirst.map((achievement, index) => (
+            <AchievementCard achievement={achievement} index={index} />
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section soft-background" aria-labelledby="method-title">
+    <div class="container">
+      <div class="evidence-method" data-aos="fade-up">
+        <div>
+          <p class="eyebrow">Criterio de publicación</p>
+          <h2 id="method-title">
+            Evidencia transparente, sin borrar la historia
+          </h2>
+        </div>
+        <div>
+          <p>
+            Cada fuente indica qué campos respalda, cuándo fue consultada y si
+            continúa disponible. Una instantánea posterior no reemplaza el
+            resultado de cierre de una competencia; ambas se muestran con su
+            contexto.
+          </p>
+          <p class="financial-disclaimer">
+            Los resultados descritos corresponden a competencias históricas y no
+            constituyen una promesa de rendimiento, recomendación de inversión
+            ni asesoramiento financiero. El trading con apalancamiento implica
+            un riesgo elevado y el rendimiento pasado no garantiza resultados
+            futuros.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .quantitative-metrics {
+    max-width: 62rem;
+    margin-inline: auto;
+  }
+
+  .achievement-list {
+    display: grid;
+    gap: clamp(1.5rem, 4vw, 2.5rem);
+  }
+
+  .evidence-method {
+    display: grid;
+    grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+    gap: clamp(1.5rem, 5vw, 4rem);
+    align-items: start;
+  }
+
+  .evidence-method h2 {
+    margin-bottom: 0;
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    font-weight: 700;
+    letter-spacing: -0.035em;
+  }
+
+  .financial-disclaimer {
+    margin: 1.25rem 0 0;
+    padding: 1rem 1.15rem;
+    border-left: 0.2rem solid var(--accent-color);
+    background: #ffffff;
+    font-size: 0.88rem;
+  }
+
+  @media (max-width: 47.998rem) {
+    .evidence-method {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

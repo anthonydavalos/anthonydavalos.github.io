@@ -1,0 +1,122 @@
+---
+const currentYear = new Date().getFullYear();
+---
+
+<footer class="site-footer soft-background">
+  <div class="container site-footer__inner">
+    <div>
+      <a class="site-footer__brand" href="/">Anthony Davalos</a>
+      <p>Ingeniería de software, automatización y ciberseguridad defensiva.</p>
+    </div>
+    <nav aria-label="Navegación del pie">
+      <a href="/">Inicio</a>
+      <a href="/proyectos/">Proyectos</a>
+      <a href="/ciberseguridad/">Ciberseguridad</a>
+      <a href="/trayectoria-cuantitativa/">Trayectoria</a>
+      <a href="/sobre-mi/">Sobre mí</a>
+      <a href="/contacto/">Contacto</a>
+    </nav>
+  </div>
+  <div class="container site-footer__legal">
+    <p>© {currentYear} Anthony Davalos.</p>
+    <nav aria-label="Información legal">
+      <a href="/privacidad/">Privacidad</a>
+      <a href="/terminos/">Términos</a>
+      <a href="/licencias/">Licencias</a>
+    </nav>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    color: var(--default-color);
+    background: var(--background-color);
+  }
+
+  .site-footer__inner {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 2rem;
+    padding-block: clamp(3rem, 6vw, 4.5rem);
+  }
+
+  .site-footer__brand {
+    display: inline-block;
+    margin-bottom: 0.8rem;
+    color: var(--heading-color);
+    font-family: var(--heading-font);
+    font-size: 1.25rem;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    text-decoration: none;
+  }
+
+  .site-footer p {
+    max-width: 33rem;
+    margin: 0;
+    font-size: 0.9rem;
+  }
+
+  .site-footer nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 1.25rem;
+  }
+
+  .site-footer nav a {
+    color: var(--nav-color);
+    font-family: var(--nav-font);
+    font-size: 0.82rem;
+    font-weight: 500;
+    text-decoration: none;
+  }
+
+  .site-footer nav a:hover {
+    color: var(--nav-hover-color);
+  }
+
+  .site-footer__legal {
+    padding-block: 1.2rem;
+    border-top: 1px solid var(--border-color);
+  }
+
+  .site-footer__legal p {
+    font-size: 0.78rem;
+  }
+
+  .site-footer__legal {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+
+  .site-footer__legal nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+  }
+
+  .site-footer__legal a {
+    color: var(--nav-color);
+    font-family: var(--nav-font);
+    font-size: 0.78rem;
+    text-decoration: none;
+  }
+
+  .site-footer__legal a:hover {
+    color: var(--nav-hover-color);
+  }
+
+  @media (max-width: 47.998rem) {
+    .site-footer__inner {
+      display: grid;
+    }
+
+    .site-footer__legal {
+      align-items: flex-start;
+      flex-direction: column;
+    }
+  }
+</style>

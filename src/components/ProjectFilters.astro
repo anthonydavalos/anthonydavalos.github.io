@@ -1,0 +1,74 @@
+---
+interface Filter {
+  label: string;
+  value: string;
+}
+
+interface Props {
+  filters: Filter[];
+}
+
+const { filters } = Astro.props;
+---
+
+<div class="project-filters" aria-label="Filtrar proyectos">
+  <div
+    class="project-filters__buttons"
+    role="toolbar"
+    aria-label="Categorías de proyectos"
+  >
+    {
+      filters.map((filter, index) => (
+        <button
+          type="button"
+          data-project-filter={filter.value}
+          aria-pressed={index === 0 ? "true" : "false"}
+        >
+          {filter.label}
+        </button>
+      ))
+    }
+  </div>
+  <p class="project-filters__status" data-project-filter-status role="status">
+    Se muestran todos los proyectos.
+  </p>
+</div>
+
+<style>
+  .project-filters {
+    margin-bottom: 2rem;
+  }
+
+  .project-filters__buttons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.65rem;
+  }
+
+  .project-filters button {
+    min-height: 2.6rem;
+    padding: 0.4rem 0.9rem;
+    border: 0.125rem solid var(--accent-color);
+    border-radius: 999px;
+    background: #ffffff;
+    color: var(--accent-color);
+    font-family: var(--nav-font);
+    font-size: 0.78rem;
+    font-weight: 600;
+  }
+
+  .project-filters button:hover,
+  .project-filters button:focus-visible,
+  .project-filters button[aria-pressed="true"] {
+    background: var(--accent-color);
+    color: var(--contrast-color);
+  }
+
+  .project-filters__status {
+    margin: 1rem 0 0;
+    color: var(--default-color);
+    font-size: 0.85rem;
+    text-align: center;
+  }
+</style>

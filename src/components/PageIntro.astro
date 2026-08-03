@@ -1,0 +1,37 @@
+---
+interface Props {
+  eyebrow: string;
+  title: string;
+  description: string;
+  titleId?: string;
+}
+
+const { eyebrow, title, description, titleId } = Astro.props;
+---
+
+<div class="page-intro" data-aos="fade-up">
+  <p class="eyebrow section-heading__rule">{eyebrow}</p>
+  <h1 id={titleId}>{title}</h1>
+  <p>{description}</p>
+</div>
+
+<style>
+  .page-intro {
+    max-width: 48rem;
+    margin: 0 auto clamp(2.5rem, 6vw, 4.5rem);
+    text-align: center;
+  }
+
+  .page-intro h1 {
+    margin-bottom: 1rem;
+    font-size: clamp(2.3rem, 5vw, 4rem);
+    font-weight: 700;
+    letter-spacing: -0.04em;
+  }
+
+  .page-intro > p:last-child {
+    margin-bottom: 0;
+    color: var(--default-color);
+    font-size: clamp(1rem, 2vw, 1.15rem);
+  }
+</style>

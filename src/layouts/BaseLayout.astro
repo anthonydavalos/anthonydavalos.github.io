@@ -1,0 +1,63 @@
+---
+import { Font } from "astro:assets";
+
+import Footer from "../components/Footer.astro";
+import Header from "../components/Header.astro";
+import Preloader from "../components/Preloader.astro";
+import SEOHead from "../components/SEOHead.astro";
+import "../styles/global.css";
+
+interface Props {
+  title: string;
+  description: string;
+  canonicalPath?: string;
+  noindex?: boolean;
+  lang?: string;
+}
+
+const {
+  title,
+  description,
+  canonicalPath,
+  noindex = false,
+  lang = "es",
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang={lang} class="no-js">
+  <head>
+    <script is:inline>
+      document.documentElement.classList.remove("no-js");
+      document.documentElement.classList.add("js");
+    </script>
+    <SEOHead
+      title={title}
+      description={description}
+      canonicalPath={canonicalPath}
+      noindex={noindex}
+    />
+    <Font
+      cssVariable="--font-open-sans"
+      preload={[{ weight: 400, style: "normal", subset: "latin" }]}
+    />
+    <Font
+      cssVariable="--font-raleway"
+      preload={[{ weight: 700, style: "normal", subset: "latin" }]}
+    />
+  </head>
+  <body>
+    <Preloader />
+    <a class="skip-link" href="#main-content">Saltar al contenido principal</a>
+    <Header currentPath={Astro.url.pathname} />
+    <main id="main-content">
+      <slot />
+    </main>
+    <Footer />
+    <script>
+      import { initVisualInteractions } from "../scripts/interactions";
+
+      void initVisualInteractions();
+    </script>
+  </body>
+</html>

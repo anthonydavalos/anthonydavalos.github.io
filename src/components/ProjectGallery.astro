@@ -1,0 +1,63 @@
+---
+export interface GalleryImage {
+  src: string;
+  alt: string;
+  caption?: string;
+}
+
+interface Props {
+  galleryId: string;
+  images: GalleryImage[];
+}
+
+const { galleryId, images } = Astro.props;
+---
+
+<ul class="project-gallery" aria-label="Galería del proyecto">
+  {
+    images.map((image) => (
+      <li>
+        <a
+          href={image.src}
+          data-glightbox
+          data-gallery={galleryId}
+          data-title={image.caption}
+          aria-label={
+            image.caption ? `${image.alt}: ${image.caption}` : image.alt
+          }
+        >
+          <img src={image.src} alt={image.alt} loading="lazy" />
+        </a>
+      </li>
+    ))
+  }
+</ul>
+
+<style>
+  .project-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr));
+    gap: 1rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .project-gallery a {
+    display: block;
+    overflow: hidden;
+    border: 1px solid var(--accent-color);
+    border-radius: var(--radius-sm);
+  }
+
+  .project-gallery img {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    transition: transform var(--transition-fast);
+  }
+
+  .project-gallery a:hover img {
+    transform: scale(1.03);
+  }
+</style>

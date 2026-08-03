@@ -1,0 +1,11 @@
+[
+  {
+    "id": "seguridad-defensiva",
+    "order": 10,
+    "title": "Laboratorio de seguridad defensiva",
+    "summary": "Práctica controlada y documentación técnica sin datos operativos, credenciales ni configuraciones sensibles.",
+    "status": "in-progress",
+    "areas": ["Observabilidad", "Análisis defensivo", "Documentación"],
+    "publish": false
+  }
+]

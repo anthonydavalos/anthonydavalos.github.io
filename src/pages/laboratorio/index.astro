@@ -1,0 +1,45 @@
+---
+import { getCollection } from "astro:content";
+
+import PageIntro from "../../components/PageIntro.astro";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+const labs = (await getCollection("labs"))
+  .map(({ data }) => data)
+  .sort((first, second) => first.order - second.order);
+---
+
+<BaseLayout
+  title="Laboratorio | Anthony Davalos"
+  description="Laboratorio en progreso para automatización, observabilidad y ciberseguridad defensiva."
+>
+  <section class="section soft-background" aria-labelledby="lab-title">
+    <div class="container">
+      <PageIntro
+        eyebrow="Laboratorio"
+        title="Práctica responsable en progreso"
+        titleId="lab-title"
+        description="Este espacio reunirá notas técnicas y ejercicios publicados cuando cuenten con el contexto y la revisión necesarios."
+      />
+
+      <div class="row justify-content-center g-4">
+        {
+          labs.map((lab) => (
+            <div class="col-lg-8" data-aos="fade-up">
+              <article class="focus-card">
+                <span class="focus-card__number" aria-hidden="true">
+                  Lab
+                </span>
+                <h2>{lab.title}</h2>
+                <p>{lab.summary}</p>
+                <p>
+                  <strong>Áreas:</strong> {lab.areas.join(" · ")}
+                </p>
+              </article>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+</BaseLayout>

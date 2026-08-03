@@ -1,0 +1,11 @@
+[
+  {
+    "id": "bitacora-inicial",
+    "order": 10,
+    "title": "Bitácora técnica inicial",
+    "summary": "Notas en preparación sobre ingeniería de software, automatización y seguridad defensiva.",
+    "status": "draft",
+    "topics": ["Software", "Automatización", "Seguridad defensiva"],
+    "publish": false
+  }
+]

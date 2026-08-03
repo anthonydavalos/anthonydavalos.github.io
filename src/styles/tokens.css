@@ -1,0 +1,58 @@
+:root {
+  color-scheme: light;
+
+  --default-font:
+    var(--font-open-sans), system-ui, -apple-system, "Segoe UI", sans-serif;
+  --heading-font: var(--font-raleway), system-ui, sans-serif;
+  --nav-font: var(--font-raleway), system-ui, sans-serif;
+  --accent-font: var(--font-raleway), system-ui, sans-serif;
+
+  --background-color: #ffffff;
+  --default-color: #444444;
+  --heading-color: #222222;
+  --subtitle-color: #484848;
+  --accent-color: #3498db;
+  --accent-strong: #176c9f;
+  --accent-on-color: #102c3d;
+  --accent-soft: #eaf6fc;
+  --surface-color: #ffffff;
+  --contrast-color: #ffffff;
+  --border-color: #dcecf4;
+  --light-background-color: #f3f9fd;
+  --soft-background-color: #f7fbfe;
+
+  --nav-color: #444444;
+  --nav-hover-color: #176c9f;
+  --nav-mobile-background-color: #ffffff;
+  --nav-dropdown-background-color: #ffffff;
+  --nav-dropdown-color: #444444;
+  --nav-dropdown-hover-color: #176c9f;
+
+  --container-width: 71.25rem;
+  --section-space: clamp(4.5rem, 8vw, 7rem);
+  --radius-sm: 0.75rem;
+  --radius-md: 1.25rem;
+  --radius-lg: 2rem;
+  --shadow-soft: 0 1.5rem 4rem rgb(34 34 34 / 9%);
+  --shadow-card: 0 1rem 2.5rem rgb(52 152 219 / 12%);
+  --transition-fast: 180ms ease;
+}
+
+.light-background {
+  --background-color: var(--light-background-color);
+  --surface-color: #ffffff;
+}
+
+.soft-background {
+  --background-color: var(--soft-background-color);
+  --surface-color: #ffffff;
+}
+
+.dark-background {
+  --background-color: #07111d;
+  --default-color: #f5f9fc;
+  --heading-color: #ffffff;
+  --surface-color: #122130;
+  --contrast-color: #ffffff;
+  --border-color: #294155;
+}

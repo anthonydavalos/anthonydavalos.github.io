@@ -1,0 +1,93 @@
+---
+import PageIntro from "../../components/PageIntro.astro";
+import Timeline from "../../components/Timeline.astro";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+const experience = [
+  {
+    period: "2011 - actualidad",
+    title: "Retail Trader",
+    organization: "Mcofit",
+    description:
+      "Trabajo independiente vinculado a mercados financieros y sistemas.",
+  },
+  {
+    period: "2014 - 2016",
+    title: "Institutional Trader",
+    organization: "FXPRIMUS / Omega Inversiones Perú S.A.C.",
+    description:
+      "Experiencia en comercialización de instrumentos financieros y operación de cobertura.",
+  },
+  {
+    period: "2011 - 2013",
+    title: "Logística Claro TV",
+    organization: "Soluciones en Telecomunicaciones Will S.A.C.",
+  },
+  {
+    period: "2007 - 2009",
+    title: "Helpdesk Telefónica Movistar",
+    organization: "Atento Perú",
+    description:
+      "Soporte técnico y remoto, diagnóstico de conectividad y configuración de redes, con una base práctica orientada a la seguridad defensiva.",
+  },
+  {
+    period: "Enero de 2005 - agosto de 2007",
+    title: "Logística",
+    organization: "Labor Force",
+    description: "Área: soporte logístico.",
+  },
+  {
+    period: "Mayo de 2004 · 1 mes",
+    title: "Programador",
+    organization: "Samsung Electronics",
+    description: "Área: software.",
+  },
+];
+
+const education = [
+  {
+    period: "Septiembre - noviembre de 2011",
+    title: "Técnico · Curso de Microsoft Access",
+    organization: "Universidad Nacional de Ingeniería",
+    description: "Aptitudes: Microsoft Access y Microsoft SQL Server.",
+  },
+  {
+    period: "1994 - 1996",
+    title: "Técnico · Computational Science",
+    organization: "Federación Universitaria San Marcos",
+    description: "Aptitudes: análisis de datos y tecnología de la información.",
+  },
+];
+---
+
+<BaseLayout
+  title="Sobre mí | Anthony Davalos"
+  description="Trayectoria profesional y formación de Anthony Davalos."
+>
+  <section class="section" aria-labelledby="about-title">
+    <div class="container">
+      <PageIntro
+        eyebrow="Sobre mí"
+        title="Trayectoria en sistemas, soporte y automatización"
+        titleId="about-title"
+        description="Experiencia profesional con base en programación, soporte técnico, logística y sistemas; actualmente enfocada en software, automatización y seguridad defensiva."
+      />
+
+      <div data-aos="fade-up">
+        <Timeline entries={experience} />
+      </div>
+    </div>
+  </section>
+
+  <section class="section light-background" aria-labelledby="education-title">
+    <div class="container">
+      <div class="section-heading" data-aos="fade-up">
+        <p class="eyebrow section-heading__rule">Formación</p>
+        <h2 id="education-title">Educación</h2>
+      </div>
+      <div data-aos="fade-up">
+        <Timeline entries={education} />
+      </div>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,177 @@
+---
+import { getCollection } from "astro:content";
+
+import BaseLayout from "../layouts/BaseLayout.astro";
+import MetricCounter from "../components/MetricCounter.astro";
+import ProjectCarousel from "../components/ProjectCarousel.astro";
+
+const featuredProjects = (
+  await getCollection("projects", ({ data }) => data.status === "featured")
+)
+  .map(({ data }) => data)
+  .sort((first, second) => first.order - second.order);
+
+const focusAreas = [
+  {
+    title: "Software y APIs",
+    description:
+      "Diseño y desarrollo de sistemas e integraciones con atención a la mantenibilidad.",
+  },
+  {
+    title: "Automatización",
+    description:
+      "Flujos que reducen tareas repetitivas y hacen visibles sus resultados.",
+  },
+  {
+    title: "Ciberseguridad defensiva",
+    description:
+      "Laboratorio en progreso, documentación técnica y aprendizaje continuo.",
+  },
+];
+---
+
+<BaseLayout
+  title="Anthony Davalos | Portafolio profesional"
+  description="Portafolio profesional de Anthony Davalos: ingeniería de software, automatización y ciberseguridad defensiva."
+>
+  <section id="inicio" class="hero section" aria-labelledby="hero-title">
+    <div class="container">
+      <div class="row align-items-center gy-5 gx-lg-5">
+        <div class="col-lg-7" data-aos="fade-up">
+          <p class="eyebrow">Portafolio profesional</p>
+          <h1 id="hero-title" class="hero__title">
+            Anthony <span>Davalos</span>
+          </h1>
+          <p class="hero__lead">
+            Construyo sistemas, integraciones y automatizaciones con foco en
+            confiabilidad, observabilidad y aprendizaje continuo en seguridad
+            defensiva.
+          </p>
+          <a class="button" href="#enfoque">Conocer mi enfoque</a>
+        </div>
+
+        <div class="col-lg-5" data-aos="fade-left" data-aos-delay="80">
+          <div class="hero-visual">
+            <p class="hero-visual__label">Ingeniería aplicada</p>
+            <ul class="hero-visual__list">
+              {
+                focusAreas.map((area, index) => (
+                  <li class="hero-visual__item">
+                    <span class="hero-visual__number">
+                      {String(index + 1).padStart(2, "0")}
+                    </span>
+                    <span>{area.title}</span>
+                  </li>
+                ))
+              }
+            </ul>
+            <p class="hero-visual__footer">
+              Confiabilidad · Observabilidad · Mejora continua
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section
+    id="enfoque"
+    class="section light-background"
+    aria-labelledby="focus-title"
+  >
+    <div class="container">
+      <div class="section-heading" data-aos="fade-up">
+        <p class="eyebrow section-heading__rule">Áreas de trabajo</p>
+        <h2 id="focus-title">
+          Ingeniería de software, automatización y seguridad
+        </h2>
+        <p>
+          Una base técnica enfocada en construir soluciones claras, verificables
+          y sostenibles.
+        </p>
+      </div>
+
+      <div class="row g-4">
+        {
+          focusAreas.map((area, index) => (
+            <div
+              class="col-md-6 col-lg-4"
+              data-aos="fade-up"
+              data-aos-delay={String(index * 70)}
+            >
+              <article class="focus-card">
+                <span class="focus-card__number" aria-hidden="true">
+                  {String(index + 1).padStart(2, "0")}
+                </span>
+                <h3>{area.title}</h3>
+                <p>{area.description}</p>
+              </article>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section
+    class="section soft-background"
+    aria-labelledby="quantitative-preview-title"
+  >
+    <div class="container">
+      <div class="row align-items-center g-5">
+        <div class="col-lg-6" data-aos="fade-up">
+          <p class="eyebrow">Trayectoria cuantitativa</p>
+          <h2
+            id="quantitative-preview-title"
+            class="quantitative-preview__title"
+          >
+            Tres primeros lugares entre 2017 y 2020
+          </h2>
+          <p class="quantitative-preview__copy">
+            Competencias organizadas por Tutores FX y AvaTrade, FXStreet y
+            Equiti LATAM. Los resultados se publican con cifras completas,
+            fuentes conservadas y discrepancias explicadas.
+          </p>
+          <a class="button" href="/trayectoria-cuantitativa/">
+            Ver trayectoria y evidencia
+          </a>
+        </div>
+        <div class="col-lg-6">
+          <div class="row g-3">
+            <div class="col-6" data-aos="fade-up" data-aos-delay="60">
+              <MetricCounter
+                value={3}
+                displayValue="3"
+                label="primeros lugares"
+              />
+            </div>
+            <div class="col-6" data-aos="fade-up" data-aos-delay="120">
+              <MetricCounter
+                value={2000}
+                displayValue="2,000"
+                suffix="+"
+                label="participantes en 2020"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <ProjectCarousel projects={featuredProjects} />
+</BaseLayout>
+
+<style>
+  .quantitative-preview__title {
+    margin-bottom: 1rem;
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 700;
+    letter-spacing: -0.035em;
+  }
+
+  .quantitative-preview__copy {
+    max-width: 39rem;
+    margin-bottom: 1.7rem;
+  }
+</style>
