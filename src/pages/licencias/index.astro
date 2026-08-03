@@ -1,0 +1,120 @@
+---
+import LegalDocument from "../../components/LegalDocument.astro";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+const notices = [
+  [
+    "Bootstrap",
+    "5.3.8",
+    "The Bootstrap Authors",
+    "MIT",
+    "https://getbootstrap.com/",
+  ],
+  [
+    "Bootstrap Icons",
+    "1.13.1",
+    "Mark Otto",
+    "MIT",
+    "https://icons.getbootstrap.com/",
+  ],
+  ["AOS", "2.3.4", "Michał Sajnóg", "MIT", "https://michalsnik.github.io/aos/"],
+  [
+    "GLightbox",
+    "3.3.1",
+    "Biati Digital",
+    "MIT",
+    "https://biati-digital.github.io/glightbox/",
+  ],
+  ["Swiper", "14.0.7", "Vladimir Kharlampidi", "MIT", "https://swiperjs.com/"],
+  [
+    "PureCounter",
+    "1.5.0",
+    "Stig Rex",
+    "MIT",
+    "https://github.com/srexi/purecounterjs",
+  ],
+  [
+    "imagesLoaded",
+    "5.0.0",
+    "David DeSandro",
+    "MIT",
+    "https://imagesloaded.desandro.com/",
+  ],
+  ["Isotope", "3.0.6", "Metafizzy", "GPL-3.0", "https://isotope.metafizzy.co/"],
+  [
+    "Open Sans",
+    "Variable",
+    "Steve Matteson",
+    "Apache-2.0",
+    "https://fonts.google.com/specimen/Open+Sans",
+  ],
+  [
+    "Raleway",
+    "Variable",
+    "The League of Moveable Type",
+    "OFL-1.1",
+    "https://fonts.google.com/specimen/Raleway",
+  ],
+];
+---
+
+<BaseLayout
+  title="Licencias | Anthony Davalos"
+  description="Licencias y avisos de terceros del portafolio profesional de Anthony Davalos."
+>
+  <LegalDocument
+    eyebrow="Información legal"
+    title="Licencias y avisos de terceros"
+    titleId="licenses-title"
+    description="Componentes, fuentes y licencias incluidos en la versión actual del sitio."
+  >
+    <h2>Licencia del proyecto</h2>
+    <p>
+      El código fuente de este portafolio se distribuye bajo la
+      <a href="https://www.gnu.org/licenses/gpl-3.0.html"
+        >GNU General Public License v3.0</a
+      >. La licencia completa está disponible en el archivo <code>LICENSE</code>
+      del repositorio público.
+    </p>
+
+    <p class="legal-note">
+      Isotope se utiliza bajo GPL-3.0. En consecuencia, el repositorio conserva
+      la licencia GPL-3.0, los avisos de terceros y el código fuente de la
+      versión publicada.
+    </p>
+
+    <h2>Componentes y fuentes</h2>
+    <table class="legal-table">
+      <thead>
+        <tr>
+          <th>Componente</th>
+          <th>Versión</th>
+          <th>Autor</th>
+          <th>Licencia</th>
+        </tr>
+      </thead>
+      <tbody>
+        {
+          notices.map(([name, version, author, license, url]) => (
+            <tr>
+              <td>
+                <a href={url}>{name}</a>
+              </td>
+              <td>{version}</td>
+              <td>{author}</td>
+              <td>{license}</td>
+            </tr>
+          ))
+        }
+      </tbody>
+    </table>
+
+    <h2>Avisos completos</h2>
+    <p>
+      Las versiones, autores, licencias y enlaces de referencia se documentan
+      también en <code>THIRD_PARTY_NOTICES.md</code> dentro del repositorio. Las fuentes
+      se sirven localmente como recursos optimizados por Astro y no requieren peticiones
+      del navegador a Google Fonts.
+    </p>
+  </LegalDocument>
+</BaseLayout>

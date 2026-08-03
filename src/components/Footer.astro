@@ -19,6 +19,11 @@ const currentYear = new Date().getFullYear();
   </div>
   <div class="container site-footer__legal">
     <p>© {currentYear} Anthony Davalos.</p>
+    <nav aria-label="Información legal">
+      <a href="/privacidad/">Privacidad</a>
+      <a href="/terminos/">Términos</a>
+      <a href="/licencias/">Licencias</a>
+    </nav>
   </div>
 </footer>
 
@@ -80,9 +85,38 @@ const currentYear = new Date().getFullYear();
     font-size: 0.78rem;
   }
 
+  .site-footer__legal {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+
+  .site-footer__legal nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+  }
+
+  .site-footer__legal a {
+    color: var(--nav-color);
+    font-family: var(--nav-font);
+    font-size: 0.78rem;
+    text-decoration: none;
+  }
+
+  .site-footer__legal a:hover {
+    color: var(--nav-hover-color);
+  }
+
   @media (max-width: 47.998rem) {
     .site-footer__inner {
       display: grid;
+    }
+
+    .site-footer__legal {
+      align-items: flex-start;
+      flex-direction: column;
     }
   }
 </style>

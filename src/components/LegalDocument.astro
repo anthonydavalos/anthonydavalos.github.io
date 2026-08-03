@@ -1,0 +1,101 @@
+---
+import PageIntro from "./PageIntro.astro";
+
+interface Props {
+  eyebrow: string;
+  title: string;
+  titleId: string;
+  description: string;
+}
+
+const { eyebrow, title, titleId, description } = Astro.props;
+---
+
+<section class="section light-background" aria-labelledby={titleId}>
+  <div class="container">
+    <PageIntro
+      eyebrow={eyebrow}
+      title={title}
+      titleId={titleId}
+      description={description}
+    />
+    <article class="legal-document" data-aos="fade-up">
+      <slot />
+    </article>
+  </div>
+</section>
+
+<style>
+  .legal-document {
+    max-width: 52rem;
+    margin-inline: auto;
+    padding: clamp(1.5rem, 4vw, 2.6rem);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    background: var(--surface-color);
+    box-shadow: var(--shadow-card);
+  }
+
+  .legal-document :global(h2) {
+    margin: 2rem 0 0.8rem;
+    font-size: clamp(1.35rem, 3vw, 1.75rem);
+    font-weight: 700;
+  }
+
+  .legal-document :global(h2:first-child) {
+    margin-top: 0;
+  }
+
+  .legal-document :global(h3) {
+    margin: 1.5rem 0 0.5rem;
+    font-size: 1.05rem;
+    font-weight: 700;
+  }
+
+  .legal-document :global(ul) {
+    padding-left: 1.2rem;
+  }
+
+  .legal-document :global(li + li) {
+    margin-top: 0.45rem;
+  }
+
+  .legal-document :global(.legal-note) {
+    margin-top: 1.5rem;
+    padding: 1rem 1.15rem;
+    border-left: 0.2rem solid var(--accent-color);
+    background: var(--soft-background-color);
+    font-size: 0.9rem;
+  }
+
+  .legal-document :global(.legal-table) {
+    width: 100%;
+    margin-top: 1rem;
+    border-collapse: collapse;
+    font-size: 0.88rem;
+  }
+
+  .legal-document :global(.legal-table th),
+  .legal-document :global(.legal-table td) {
+    padding: 0.75rem;
+    border: 1px solid var(--border-color);
+    text-align: left;
+    vertical-align: top;
+  }
+
+  .legal-document :global(.legal-table th) {
+    color: var(--heading-color);
+    background: var(--soft-background-color);
+    font-family: var(--nav-font);
+    font-size: 0.72rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  @media (max-width: 35rem) {
+    .legal-document :global(.legal-table) {
+      display: block;
+      overflow-x: auto;
+    }
+  }
+</style>

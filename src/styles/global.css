@@ -156,13 +156,14 @@ p {
 .hero__title {
   max-width: 12ch;
   margin-bottom: 1.35rem;
-  font-size: clamp(2.6rem, 7vw, 5.2rem);
+  color: #222222;
+  font-size: clamp(2.4rem, 5.8vw, 3rem);
   font-weight: 700;
   letter-spacing: -0.045em;
 }
 
 .hero__title span {
-  color: var(--heading-color);
+  color: #222222;
 }
 
 .hero__lead {
@@ -361,7 +362,7 @@ html:not(.aos-enabled) [data-aos] {
   }
 
   .hero__title {
-    font-size: clamp(2.35rem, 13vw, 3.3rem);
+    font-size: clamp(2.35rem, 11vw, 3rem);
   }
 
   .button {
