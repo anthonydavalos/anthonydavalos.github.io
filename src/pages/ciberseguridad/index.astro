@@ -1,0 +1,53 @@
+---
+import PageIntro from "../../components/PageIntro.astro";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+---
+
+<BaseLayout
+  title="Ciberseguridad defensiva | Anthony Davalos"
+  description="Enfoque profesional de Anthony Davalos en ciberseguridad defensiva y aprendizaje continuo."
+>
+  <section class="section" aria-labelledby="security-title">
+    <div class="container">
+      <PageIntro
+        eyebrow="Ciberseguridad"
+        title="Seguridad defensiva con aprendizaje continuo"
+        titleId="security-title"
+        description="Un enfoque orientado a comprender sistemas, mejorar su observabilidad y desarrollar prácticas defensivas de manera responsable."
+      />
+
+      <div class="row g-4">
+        <div class="col-md-6 col-lg-4" data-aos="fade-up">
+          <article class="focus-card">
+            <span class="focus-card__number" aria-hidden="true">01</span>
+            <h2>Fundamentos defensivos</h2>
+            <p>
+              Estudio de superficies de ataque, control de acceso y prácticas de
+              endurecimiento aplicadas en entornos de laboratorio.
+            </p>
+          </article>
+        </div>
+        <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="70">
+          <article class="focus-card">
+            <span class="focus-card__number" aria-hidden="true">02</span>
+            <h2>Observabilidad</h2>
+            <p>
+              Interés en registros, señales y trazabilidad para entender el
+              comportamiento de sistemas y automatizaciones.
+            </p>
+          </article>
+        </div>
+        <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="140">
+          <article class="focus-card">
+            <span class="focus-card__number" aria-hidden="true">03</span>
+            <h2>Laboratorio en progreso</h2>
+            <p>
+              Práctica controlada, documentación y mejora gradual de habilidades
+              en ciberseguridad defensiva.
+            </p>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

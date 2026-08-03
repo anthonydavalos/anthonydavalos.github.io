@@ -1,0 +1,34 @@
+---
+import PageIntro from "../../components/PageIntro.astro";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+---
+
+<BaseLayout
+  title="Blog | Anthony Davalos"
+  description="Notas profesionales sobre software, automatización y ciberseguridad defensiva."
+>
+  <section class="section" aria-labelledby="blog-title">
+    <div class="container">
+      <PageIntro
+        eyebrow="Blog"
+        title="Notas en preparación"
+        titleId="blog-title"
+        description="Las publicaciones se incorporarán con contexto técnico, fuentes y fecha de actualización."
+      />
+
+      <div class="row justify-content-center">
+        <div class="col-lg-8" data-aos="fade-up">
+          <article class="focus-card">
+            <span class="focus-card__number" aria-hidden="true">01</span>
+            <h2>Próximas publicaciones</h2>
+            <p>
+              Este espacio reunirá aprendizajes sobre ingeniería de software,
+              automatización y seguridad defensiva. Por ahora no hay artículos
+              publicados.
+            </p>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

@@ -35,6 +35,11 @@ export const initSwipers = async (): Promise<void> => {
       modules: [A11y, Keyboard, Navigation],
       slidesPerView: 1,
       spaceBetween: 24,
+      breakpoints: {
+        768: {
+          slidesPerView: 2,
+        },
+      },
       rewind: true,
       watchOverflow: true,
       keyboard: {

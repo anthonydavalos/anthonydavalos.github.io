@@ -44,6 +44,9 @@ const { projects, title = "Proyectos destacados" } = Astro.props;
         Siguiente
       </button>
     </div>
+    <p class="project-carousel__link">
+      <a href="/proyectos/">Ver todos los proyectos</a>
+    </p>
   </div>
 </section>
 
@@ -97,6 +100,18 @@ const { projects, title = "Proyectos destacados" } = Astro.props;
   .project-carousel__controls button.swiper-button-disabled {
     cursor: not-allowed;
     opacity: 0.5;
+  }
+
+  .project-carousel__link {
+    margin: 1.25rem 0 0;
+    text-align: center;
+  }
+
+  .project-carousel__link a {
+    color: var(--accent-color);
+    font-family: var(--nav-font);
+    font-size: 0.85rem;
+    font-weight: 600;
   }
 
   :global(.no-js) .project-carousel__controls {

@@ -6,11 +6,20 @@ interface Props {
 const { currentPath } = Astro.props;
 const navigation = [
   { label: "Inicio", href: "/", current: currentPath === "/" },
-  { label: "Áreas", href: "/#enfoque", current: false },
   {
     label: "Proyectos",
     href: "/proyectos/",
     current: currentPath === "/proyectos/",
+  },
+  {
+    label: "Ciberseguridad",
+    href: "/ciberseguridad/",
+    current: currentPath === "/ciberseguridad/",
+  },
+  {
+    label: "Sobre mí",
+    href: "/sobre-mi/",
+    current: currentPath === "/sobre-mi/",
   },
 ];
 ---
@@ -58,7 +67,7 @@ const navigation = [
           ))
         }
       </ul>
-      <a class="header-cta" href="/#enfoque">Mi enfoque</a>
+      <a class="header-cta" href="/contacto/">Contacto</a>
     </nav>
   </div>
 </header>

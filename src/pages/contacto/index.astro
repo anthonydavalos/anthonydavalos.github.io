@@ -1,0 +1,71 @@
+---
+import PageIntro from "../../components/PageIntro.astro";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+---
+
+<BaseLayout
+  title="Contacto | Anthony Davalos"
+  description="Canales profesionales públicos de Anthony Davalos."
+>
+  <section class="section light-background" aria-labelledby="contact-title">
+    <div class="container">
+      <PageIntro
+        eyebrow="Contacto"
+        title="Canales profesionales"
+        titleId="contact-title"
+        description="Para consultas profesionales, utiliza los perfiles públicos indicados a continuación."
+      />
+
+      <div class="row justify-content-center g-4">
+        <div class="col-md-6 col-lg-4" data-aos="fade-up">
+          <article class="focus-card">
+            <span class="focus-card__number" aria-hidden="true">in</span>
+            <h2>LinkedIn</h2>
+            <p>Perfil profesional y trayectoria pública.</p>
+            <p class="contact-link">
+              <a href="https://pe.linkedin.com/in/anthonydavalos" rel="me"
+                >Ver perfil</a
+              >
+            </p>
+          </article>
+        </div>
+        <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="70">
+          <article class="focus-card">
+            <span class="focus-card__number" aria-hidden="true">GH</span>
+            <h2>GitHub</h2>
+            <p>Repositorios y trabajo técnico público.</p>
+            <p class="contact-link">
+              <a href="https://github.com/anthonydavalos" rel="me">Ver perfil</a
+              >
+            </p>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .contact-link {
+    margin-top: 1.25rem !important;
+  }
+
+  .contact-link a {
+    display: inline-flex;
+    min-height: 2.5rem;
+    align-items: center;
+    padding: 0.45rem 1rem;
+    border: 0.125rem solid var(--accent-color);
+    border-radius: 999px;
+    color: var(--accent-color);
+    font-family: var(--nav-font);
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-decoration: none;
+  }
+
+  .contact-link a:hover {
+    background: var(--accent-color);
+    color: var(--contrast-color);
+  }
+</style>

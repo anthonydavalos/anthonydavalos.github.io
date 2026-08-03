@@ -1,0 +1,34 @@
+---
+import PageIntro from "../../components/PageIntro.astro";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+---
+
+<BaseLayout
+  title="Trayectoria cuantitativa | Anthony Davalos"
+  description="Contexto y evidencia de la trayectoria cuantitativa histórica de Anthony Davalos."
+>
+  <section class="section soft-background" aria-labelledby="quantitative-title">
+    <div class="container">
+      <PageIntro
+        eyebrow="Trayectoria cuantitativa"
+        title="Resultados históricos con evidencia y contexto"
+        titleId="quantitative-title"
+        description="Los reconocimientos históricos se publicarán junto con sus fuentes, fecha de consulta, disponibilidad y discrepancias conocidas."
+      />
+
+      <div class="row justify-content-center">
+        <div class="col-lg-8" data-aos="fade-up">
+          <article class="focus-card">
+            <span class="focus-card__number" aria-hidden="true">Nota</span>
+            <h2>Publicación responsable en preparación</h2>
+            <p>
+              Esta sección incorporará competiciones históricas como información
+              documental. No constituirá promesa de rendimiento, recomendación
+              de inversión ni asesoramiento financiero.
+            </p>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
