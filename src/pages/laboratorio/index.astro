@@ -1,6 +1,12 @@
 ---
+import { getCollection } from "astro:content";
+
 import PageIntro from "../../components/PageIntro.astro";
 import BaseLayout from "../../layouts/BaseLayout.astro";
+
+const labs = (await getCollection("labs"))
+  .map(({ data }) => data)
+  .sort((first, second) => first.order - second.order);
 ---
 
 <BaseLayout
@@ -16,18 +22,23 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
         description="Este espacio reunirá notas técnicas y ejercicios publicados cuando cuenten con el contexto y la revisión necesarios."
       />
 
-      <div class="row justify-content-center">
-        <div class="col-lg-8" data-aos="fade-up">
-          <article class="focus-card">
-            <span class="focus-card__number" aria-hidden="true">Lab</span>
-            <h2>Próximamente</h2>
-            <p>
-              Los laboratorios se publicarán de forma gradual, sin datos
-              operativos, credenciales, configuraciones sensibles ni
-              instrucciones que puedan causar daño.
-            </p>
-          </article>
-        </div>
+      <div class="row justify-content-center g-4">
+        {
+          labs.map((lab) => (
+            <div class="col-lg-8" data-aos="fade-up">
+              <article class="focus-card">
+                <span class="focus-card__number" aria-hidden="true">
+                  Lab
+                </span>
+                <h2>{lab.title}</h2>
+                <p>{lab.summary}</p>
+                <p>
+                  <strong>Áreas:</strong> {lab.areas.join(" · ")}
+                </p>
+              </article>
+            </div>
+          ))
+        }
       </div>
     </div>
   </section>

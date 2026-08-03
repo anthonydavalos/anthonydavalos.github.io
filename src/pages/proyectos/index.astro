@@ -1,8 +1,14 @@
 ---
+import { getCollection } from "astro:content";
+
 import ProjectCard from "../../components/ProjectCard.astro";
 import ProjectFilters from "../../components/ProjectFilters.astro";
-import { projectFilters, projects } from "../../data/projects";
+import { projectFilters } from "../../data/projects";
 import BaseLayout from "../../layouts/BaseLayout.astro";
+
+const projects = (await getCollection("projects"))
+  .map(({ data }) => data)
+  .sort((first, second) => first.order - second.order);
 ---
 
 <BaseLayout

@@ -1,8 +1,15 @@
 ---
+import { getCollection } from "astro:content";
+
 import BaseLayout from "../layouts/BaseLayout.astro";
 import MetricCounter from "../components/MetricCounter.astro";
 import ProjectCarousel from "../components/ProjectCarousel.astro";
-import { featuredProjects } from "../data/projects";
+
+const featuredProjects = (
+  await getCollection("projects", ({ data }) => data.status === "featured")
+)
+  .map(({ data }) => data)
+  .sort((first, second) => first.order - second.order);
 
 const focusAreas = [
   {

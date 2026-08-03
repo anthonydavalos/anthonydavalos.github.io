@@ -1,17 +1,27 @@
 ---
+import { getCollection } from "astro:content";
+
 import AchievementCard from "../../components/AchievementCard.astro";
 import CurrentQuantitativeRecord from "../../components/CurrentQuantitativeRecord.astro";
 import MetricCounter from "../../components/MetricCounter.astro";
 import PageIntro from "../../components/PageIntro.astro";
-import {
-  achievements,
-  currentQuantitativeRecord,
-} from "../../data/achievements";
+import type { Achievement, QuantitativeRecord } from "../../data/achievements";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 
-const achievementsNewestFirst = [...achievements].sort(
-  (first, second) => Number(second.year) - Number(first.year),
+const achievementRecords = (await getCollection("achievements")).map(
+  ({ data }) => data,
 );
+const achievementsNewestFirst = achievementRecords
+  .filter((record): record is Achievement => record.kind === "competition")
+  .sort((first, second) => Number(second.year) - Number(first.year));
+const currentQuantitativeRecords = achievementRecords.filter(
+  (record): record is QuantitativeRecord => record.kind === "current-record",
+);
+const [currentQuantitativeRecord] = currentQuantitativeRecords;
+
+if (!currentQuantitativeRecord || currentQuantitativeRecords.length !== 1) {
+  throw new Error("Expected exactly one current quantitative record");
+}
 ---
 
 <BaseLayout
