@@ -3,50 +3,60 @@
     "id": "streamliner-ai",
     "order": 10,
     "title": "Streamliner AI",
-    "summary": "Automatización de flujos y asistencia operativa enfocada en procesos claros y repetibles.",
+    "summary": "Pipeline asíncrono que detecta, recorta y publica clips de streams para TikTok.",
     "category": "Automatización",
     "status": "featured",
     "filters": ["filter-featured", "filter-automation"],
-    "monogram": "SA"
+    "imageSrc": "/images/projects/streamliner-ai-workflow.jpg",
+    "imageAlt": "Flujo de edición de video que transforma un stream en clips verticales",
+    "repositoryUrl": "https://github.com/anthonydavalos/streamliner-ai"
   },
   {
     "id": "autopilot",
     "order": 20,
     "title": "Autopilot",
-    "summary": "Sistema de automatización orientado a tareas repetitivas, trazabilidad y control operativo.",
+    "summary": "Asistente de WhatsApp integrado con OpenAI Responses API para automatizar conversaciones.",
     "category": "Automatización",
     "status": "featured",
     "filters": ["filter-featured", "filter-automation"],
-    "monogram": "AP"
+    "imageSrc": "/images/projects/autopilot-tasker-whatsapp.jpg",
+    "imageAlt": "Interfaz móvil representativa de un autoresponder de WhatsApp automatizado con Tasker",
+    "repositoryUrl": "https://github.com/anthonydavalos/autopilot"
   },
   {
     "id": "qr-code-component",
     "order": 30,
     "title": "QR Code Component",
-    "summary": "Componente de interfaz para integrar la generación de códigos QR en productos web.",
+    "summary": "Componente reutilizable para generar e integrar códigos QR en interfaces web.",
     "category": "Software y APIs",
     "status": "archived",
     "filters": ["filter-software", "filter-archived"],
-    "monogram": "QR"
+    "imageSrc": "/images/projects/qr-code-component-interface.jpg",
+    "imageAlt": "Componente de códigos QR mostrado en una interfaz web y móvil",
+    "repositoryUrl": "https://github.com/anthonydavalos/qr-code-components-main"
   },
   {
     "id": "subastas-backend",
     "order": 40,
     "title": "Subastas Backend",
-    "summary": "Backend en borrador; su publicación queda pendiente del saneamiento completo del repositorio.",
+    "summary": "API y arquitectura backend en Python para centralizar la gestión de plataformas de subastas.",
     "category": "Software y APIs",
     "status": "draft",
     "filters": ["filter-software", "filter-draft"],
-    "monogram": "SB"
+    "imageSrc": "/images/projects/subastas-backend-architecture.jpg",
+    "imageAlt": "Arquitectura de API backend y catálogo de subastas en una consola técnica",
+    "repositoryUrl": "https://github.com/anthonydavalos/subastas_backend"
   },
   {
     "id": "betsniper",
     "order": 50,
     "title": "BetSniper",
-    "summary": "Proyecto en borrador que permanece fuera de destacados hasta completar su revisión.",
-    "category": "Revisión en curso",
-    "status": "draft",
-    "filters": ["filter-draft"],
-    "monogram": "BS"
+    "summary": "Producto de analítica deportiva en tiempo real y monitoreo de sistemas con WebSockets y APIs analizadas.",
+    "category": "Analítica en tiempo real",
+    "status": "featured",
+    "filters": ["filter-featured"],
+    "imageSrc": "/images/projects/betsniper-sports-analytics.jpg",
+    "imageAlt": "Panel de analítica deportiva y monitoreo de datos en tiempo real",
+    "repositoryUrl": "https://github.com/anthonydavalos/betsniper"
   }
 ]

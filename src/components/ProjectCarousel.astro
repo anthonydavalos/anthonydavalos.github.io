@@ -36,14 +36,7 @@ const { projects, title = "Proyectos destacados" } = Astro.props;
       </div>
     </div>
 
-    <div class="project-carousel__controls" aria-label="Controles del carrusel">
-      <button type="button" data-swiper-previous aria-label="Proyecto anterior">
-        Anterior
-      </button>
-      <button type="button" data-swiper-next aria-label="Proyecto siguiente">
-        Siguiente
-      </button>
-    </div>
+    <div class="project-carousel__pagination" data-swiper-pagination></div>
     <p class="project-carousel__link">
       <a href="/proyectos/">Ver todos los proyectos</a>
     </p>
@@ -71,35 +64,11 @@ const { projects, title = "Proyectos destacados" } = Astro.props;
     height: auto;
   }
 
-  .project-carousel__controls {
+  .project-carousel__pagination {
     display: flex;
     justify-content: center;
-    gap: 0.75rem;
+    min-height: 1.5rem;
     margin-top: 1.5rem;
-  }
-
-  .project-carousel__controls button {
-    min-height: 2.75rem;
-    padding: 0.5rem 1rem;
-    border: 0.125rem solid var(--accent-color);
-    border-radius: 999px;
-    background: #ffffff;
-    color: var(--accent-color);
-    font-family: var(--nav-font);
-    font-size: 0.82rem;
-    font-weight: 600;
-  }
-
-  .project-carousel__controls button:hover:not(:disabled),
-  .project-carousel__controls button:focus-visible:not(:disabled) {
-    background: var(--accent-color);
-    color: var(--contrast-color);
-  }
-
-  .project-carousel__controls button:disabled,
-  .project-carousel__controls button.swiper-button-disabled {
-    cursor: not-allowed;
-    opacity: 0.5;
   }
 
   .project-carousel__link {
@@ -114,7 +83,7 @@ const { projects, title = "Proyectos destacados" } = Astro.props;
     font-weight: 600;
   }
 
-  :global(.no-js) .project-carousel__controls {
+  :global(.no-js) .project-carousel__pagination {
     display: none;
   }
 </style>

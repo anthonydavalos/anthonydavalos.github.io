@@ -14,16 +14,19 @@ const featuredProjects = (
 const focusAreas = [
   {
     title: "Software y APIs",
+    icon: "bi-code-slash",
     description:
       "Diseño y desarrollo de sistemas e integraciones con atención a la mantenibilidad.",
   },
   {
     title: "Automatización",
+    icon: "bi-gear-wide-connected",
     description:
       "Flujos que reducen tareas repetitivas y hacen visibles sus resultados.",
   },
   {
     title: "Ciberseguridad defensiva",
+    icon: "bi-shield-check",
     description:
       "Laboratorio en progreso, documentación técnica y aprendizaje continuo.",
   },
@@ -100,9 +103,10 @@ const focusAreas = [
               data-aos-delay={String(index * 70)}
             >
               <article class="focus-card">
-                <span class="focus-card__number" aria-hidden="true">
-                  {String(index + 1).padStart(2, "0")}
-                </span>
+                <i
+                  class={`focus-card__icon bi ${area.icon}`}
+                  aria-hidden="true"
+                />
                 <h3>{area.title}</h3>
                 <p>{area.description}</p>
               </article>
