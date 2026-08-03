@@ -1,6 +1,6 @@
 import swiperA11yStylesheet from "swiper/css/a11y?url";
+import swiperPaginationStylesheet from "swiper/css/pagination?url";
 import swiperStylesheet from "swiper/css?url";
-import swiperNavigationStylesheet from "swiper/css/navigation?url";
 
 import { loadStylesheet } from "./styles";
 
@@ -11,13 +11,13 @@ export const initSwipers = async (): Promise<void> => {
     return;
   }
 
-  const [{ default: Swiper }, { A11y, Keyboard, Navigation }] =
+  const [{ default: Swiper }, { A11y, Autoplay, Keyboard, Pagination }] =
     await Promise.all([
       import("swiper"),
       import("swiper/modules"),
       loadStylesheet(swiperStylesheet, "swiper"),
       loadStylesheet(swiperA11yStylesheet, "swiper-a11y"),
-      loadStylesheet(swiperNavigationStylesheet, "swiper-navigation"),
+      loadStylesheet(swiperPaginationStylesheet, "swiper-pagination"),
     ]);
 
   carousels.forEach((carousel) => {
@@ -25,16 +25,16 @@ export const initSwipers = async (): Promise<void> => {
       return;
     }
 
-    const controlsScope =
-      carousel.closest<HTMLElement>(".project-carousel") ?? carousel;
-    const previous = controlsScope.querySelector<HTMLElement>(
-      "[data-swiper-previous]",
-    );
-    const next = controlsScope.querySelector<HTMLElement>("[data-swiper-next]");
+    const pagination = carousel
+      .closest<HTMLElement>(".project-carousel")
+      ?.querySelector<HTMLElement>("[data-swiper-pagination]");
+    const reduceMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
 
     carousel.dataset.enhanced = "true";
     new Swiper(carousel, {
-      modules: [A11y, Keyboard, Navigation],
+      modules: [A11y, Autoplay, Keyboard, Pagination],
       slidesPerView: 1,
       spaceBetween: 24,
       breakpoints: {
@@ -48,6 +48,23 @@ export const initSwipers = async (): Promise<void> => {
         enabled: true,
         onlyInViewport: true,
       },
+      ...(pagination
+        ? {
+            pagination: {
+              clickable: true,
+              el: pagination,
+            },
+          }
+        : {}),
+      ...(!reduceMotion
+        ? {
+            autoplay: {
+              delay: 5000,
+              disableOnInteraction: false,
+              pauseOnMouseEnter: true,
+            },
+          }
+        : {}),
       a11y: {
         enabled: true,
         containerMessage: carousel.getAttribute("aria-label") ?? "Carrusel",
@@ -57,14 +74,6 @@ export const initSwipers = async (): Promise<void> => {
         prevSlideMessage: "Diapositiva anterior",
         slideLabelMessage: "{{index}} de {{slidesLength}}",
       },
-      ...(previous && next
-        ? {
-            navigation: {
-              prevEl: previous,
-              nextEl: next,
-            },
-          }
-        : {}),
     });
   });
 };

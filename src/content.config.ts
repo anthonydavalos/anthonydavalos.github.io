@@ -50,7 +50,9 @@ const projects = defineCollection({
           ]),
         )
         .min(1),
-      monogram: z.string().trim().min(2).max(3),
+      imageSrc: z.string().trim().startsWith("/images/projects/"),
+      imageAlt: textSchema,
+      repositoryUrl: z.url().optional(),
     })
     .strict()
     .superRefine((project, context) => {
