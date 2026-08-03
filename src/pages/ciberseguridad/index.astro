@@ -13,8 +13,34 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
         eyebrow="Ciberseguridad"
         title="Seguridad defensiva con aprendizaje continuo"
         titleId="security-title"
-        description="Un enfoque orientado a comprender sistemas, mejorar su observabilidad y desarrollar prácticas defensivas de manera responsable."
+        description="Un enfoque construido sobre experiencia práctica en soporte, redes y diagnóstico, actualmente ampliado mediante laboratorio, observabilidad y aprendizaje continuo."
       />
+
+      <article
+        class="security-origin"
+        aria-labelledby="security-origin-title"
+        data-aos="fade-up"
+      >
+        <div>
+          <p class="eyebrow">Antecedente técnico · 2007-2009</p>
+          <h2 id="security-origin-title">
+            Redes, diagnóstico remoto y reputación de IP
+          </h2>
+        </div>
+        <div>
+          <p>
+            En el Helpdesk de Telefónica Movistar, operado por Atento Perú,
+            realicé soporte técnico y remoto, diagnóstico de conectividad y
+            configuración de redes, routers, NAT, VPN y troncales.
+          </p>
+          <p>
+            La revisión de pools de direcciones IP y la investigación de
+            bloqueos o reportes en servicios públicos antiabuso aportaron una
+            base temprana en trazabilidad, análisis de incidentes y seguridad
+            defensiva.
+          </p>
+        </div>
+      </article>
 
       <div class="row g-4">
         <div class="col-md-6 col-lg-4" data-aos="fade-up">
@@ -51,3 +77,34 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
     </div>
   </section>
 </BaseLayout>
+
+<style>
+  .security-origin {
+    display: grid;
+    grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+    gap: clamp(1.5rem, 5vw, 4rem);
+    margin-bottom: clamp(2rem, 5vw, 3.5rem);
+    padding: clamp(1.4rem, 4vw, 2.4rem);
+    border: 1px solid var(--border-color);
+    border-left: 0.25rem solid var(--accent-color);
+    border-radius: var(--radius-lg);
+    background: var(--light-background-color);
+  }
+
+  .security-origin h2 {
+    margin-bottom: 0;
+    font-size: clamp(1.65rem, 4vw, 2.4rem);
+    font-weight: 700;
+    letter-spacing: -0.035em;
+  }
+
+  .security-origin p:last-child {
+    margin-bottom: 0;
+  }
+
+  @media (max-width: 47.998rem) {
+    .security-origin {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
