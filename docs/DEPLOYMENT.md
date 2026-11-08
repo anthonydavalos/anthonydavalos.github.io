@@ -1,38 +1,61 @@
 # Despliegue en GitHub Pages
 
-## Estado previsto
+## Estado actual
 
-El sitio está configurado para la URL `https://anthonydavalos.github.io` y se
-publicará desde el repositorio público del mismo nombre. Esta guía describe la
-secuencia de publicación cuando el repositorio remoto haya sido creado y la
-revisión de la rama de trabajo haya concluido.
+El sitio ya está publicado en [https://mcofit.com](https://mcofit.com) mediante
+GitHub Pages. El repositorio público existente es
+[anthonydavalos/anthonydavalos.github.io](https://github.com/anthonydavalos/anthonydavalos.github.io).
+El origen de publicación en **Settings → Pages** es **GitHub Actions**.
 
-## Antes de publicar
+La configuración de Astro utiliza `site: "https://mcofit.com"`, salida estática
+y `trailingSlash: "always"`, sin `base` adicional. El dominio se utiliza en las
+URL canónicas y en el [índice de sitemaps](https://mcofit.com/sitemap-index.xml).
 
-1. Confirma que el repositorio remoto no existe antes de crearlo y no sustituyas
-   un repositorio existente.
-2. Revisa la rama de trabajo mediante una solicitud de cambios hacia `main`.
-3. Ejecuta `npm ci`, `npm run quality` y `npm run security`.
-4. Comprueba que no se hayan incluido archivos de entorno, documentos privados,
-   material de referencia, archivos comprimidos ni credenciales.
+## Preparar una actualización
+
+1. Comprueba `git status` y conserva cualquier cambio local antes de cambiar de
+   rama. Actualiza las referencias con `git fetch origin`.
+2. Actualiza `main` mediante avance rápido (`git merge --ff-only origin/main`
+   desde `main`) y crea una rama descriptiva para la tarea. Si hay divergencias,
+   revísalas antes de continuar; no sobrescribas el historial.
+3. Utiliza Node.js 24. La versión local indicada en `.node-version` es 24.14.0;
+   los workflows seleccionan la versión principal 24. Confirma `node --version`
+   y ejecuta `npm ci`, `npm run quality` y `npm run security`.
+4. Revisa el diff y los archivos preparados para el commit. No incluyas archivos
+   de entorno, documentos privados, material de referencia, archivos comprimidos
+   ni credenciales. `_references/` debe permanecer excluida de Git y del sitio.
 5. Confirma [LICENSE](../LICENSE) y
    [THIRD_PARTY_NOTICES.md](../THIRD_PARTY_NOTICES.md).
-6. Verifica que la rama `main` tenga únicamente contenido revisado y que no se
-   requiera una sobrescritura forzada.
+6. Cuando el cambio esté listo para revisión, publica la rama y abre una
+   solicitud de cambios hacia `main`. No es necesario recrear el repositorio
+   ni volver a configurar Pages para cada actualización.
 
-## Publicación inicial
+## Revisión y despliegue
 
-1. Crea el repositorio público `anthonydavalos.github.io` sin importar
-   historial de repositorios archivados.
-2. Conecta el remoto, publica la rama de trabajo y abre la solicitud de cambios
-   hacia `main`.
-3. Tras aprobar e integrar la solicitud, ve a **Settings → Pages** en GitHub.
-4. Selecciona **GitHub Actions** como origen de publicación.
-5. Guarda la configuración. El flujo `Deploy GitHub Pages` generará `dist` y
-   publicará únicamente el resultado estático al recibir cambios en `main`.
-6. Espera a que la ejecución de publicación termine correctamente.
-7. Comprueba las rutas principales, las rutas heredadas y la página 404 en la
-   URL pública.
+El workflow [Quality checks](../.github/workflows/quality.yml) ejecuta los
+controles de formato, lint, tipos, compilación, licencias, páginas y revisión de
+vulnerabilidades de producción en las solicitudes de cambios. Mantén la
+protección de `main` y sus controles obligatorios antes de integrar cambios.
+
+Al integrar una solicitud en `main`, el workflow
+[Deploy GitHub Pages](../.github/workflows/deploy-pages.yml) se activa por el
+push a esa rama. Instala las dependencias con `npm ci`, compila con
+`npm run build`, sube únicamente `dist` y lo despliega en el entorno
+`github-pages`. Los archivos fuente no se publican como artefacto del sitio.
+
+El workflow también admite ejecución manual (`workflow_dispatch`). Para
+republicar una versión aprobada, selecciona `main`; no despliegues una rama de
+trabajo mediante esa opción.
+
+Después de un despliegue:
+
+1. Comprueba en **Actions** que `Deploy GitHub Pages` terminó correctamente
+   para el commit integrado.
+2. Revisa las rutas principales en `https://mcofit.com`, las rutas heredadas
+   `/privacidad.html` y `/terminos.html`, y la respuesta de una ruta inexistente.
+3. Comprueba las URL canónicas, `/sitemap-index.xml` y el sitemap al que apunta.
+4. Revisa navegación e imágenes en móvil y escritorio cuando el cambio afecte
+   a la presentación del sitio.
 
 ## Mantenimiento posterior
 
@@ -47,6 +70,12 @@ revisión de la rama de trabajo haya concluido.
 
 ## Dominio personalizado
 
-No hay dominio personalizado configurado en esta versión. La publicación se
-mantendrá en `anthonydavalos.github.io` hasta que se apruebe una configuración
-de dominio independiente.
+El dominio personalizado es `mcofit.com`, con HTTPS habilitado. Su DNS se
+administra en GoDaddy y su asociación con el sitio se gestiona en
+**Settings → Pages** del repositorio existente.
+
+Las actualizaciones habituales de contenido o código no requieren cambios de
+DNS, eliminar el dominio ni repetir la verificación de propiedad. Conserva los
+registros de verificación existentes. Si se cambia el dominio en el futuro,
+revisa conjuntamente Pages, DNS, HTTPS y el valor `site` de Astro para mantener
+coherentes los enlaces canónicos y los sitemaps.
