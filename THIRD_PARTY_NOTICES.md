@@ -27,3 +27,8 @@ The MIT, Apache-2.0, and SIL Open Font License terms apply to their respective
 components and fonts. This file records the package versions used by the
 portfolio build; the installed package metadata is the source for the runtime
 component version and license entries.
+
+The product landing imports individual Bootstrap Icons SVGs from the installed
+package. Other portfolio pages retain its icon font. Both forms remain covered
+by the Bootstrap Icons MIT license, reproduced in
+`public/licenses/bootstrap-icons.txt` and served at `/licenses/bootstrap-icons.txt`.

@@ -1,0 +1,311 @@
+[
+  {
+    "id": "mc-support-resistance",
+    "name": "Mc Support Resistance",
+    "priceCheckedAt": "2026-11-08",
+    "platforms": [
+      {
+        "name": "MT4",
+        "version": "1.4",
+        "price": 30,
+        "currency": "USD",
+        "url": "https://www.mql5.com/en/market/product/187351"
+      },
+      {
+        "name": "MT5",
+        "version": "1.3",
+        "price": 30,
+        "currency": "USD",
+        "url": "https://www.mql5.com/en/market/product/187541"
+      }
+    ],
+    "locales": {
+      "es": {
+        "path": "/productos/mc-support-resistance/",
+        "seoTitle": "Mc Support Resistance para MT4 y MT5 | Mcofit",
+        "description": "Explore niveles de soporte y resistencia, contexto temporal y alertas de perforación confirmada. Mc Support Resistance para MetaTrader 4 y 5.",
+        "eyebrow": "Indicador visual para MetaTrader 4 y MetaTrader 5",
+        "headline": "Soportes y resistencias con contexto, directamente en su gráfico",
+        "intro": "Mc Support Resistance identifica y organiza soportes y resistencias para que usted pueda estudiar la estructura del precio con referencias claras. Reúna niveles, contexto temporal y alertas de perforación confirmada en una misma herramienta para MetaTrader.",
+        "highlights": [
+          "Niveles principales con jerarquía visual.",
+          "Contexto de marcos temporales relacionados.",
+          "Alertas opcionales en plataforma, correo, móvil y sonido."
+        ],
+        "benefitsTitle": "Una lectura más ordenada del gráfico",
+        "benefits": [
+          {
+            "title": "Referencias que se agrupan con la volatilidad",
+            "text": "Los niveles cercanos se agrupan con un criterio adaptado a la volatilidad del mercado. Ajuste la sensibilidad de agrupación para organizar las referencias que consulta en su análisis."
+          },
+          {
+            "title": "Actividad estructural que se distingue a simple vista",
+            "text": "Distinga niveles básicos, importantes y fuertes mediante colores y grosores que reflejan su actividad estructural. Una presentación que le permite localizar las referencias y comparar su contexto visual."
+          },
+          {
+            "title": "Contexto temporal sin superponer todos los marcos",
+            "text": "El indicador trabaja con hasta dos fuentes relacionadas. Las etiquetas de los niveles principales muestran precio y tiempo desde su última actividad; las procedentes del marco superior inmediato añaden su referencia temporal."
+          },
+          {
+            "title": "Avisos cuando se confirma una perforación",
+            "text": "Active los canales que necesite para seguir perforaciones de niveles principales, evaluadas después del cierre de vela. Si una misma vela confirma varios eventos, se agrupan en una notificación por instancia."
+          }
+        ],
+        "steps": [
+          "Añádalo a su gráfico. Consulte los niveles principales y las referencias de corto plazo sobre el precio.",
+          "Lea el contexto. Compare categorías visuales, marcos temporales y etiquetas de última actividad.",
+          "Adapte la presentación. Personalice colores, etiquetas y sensibilidad de agrupación según su forma de trabajar.",
+          "Active sus avisos. Elija los canales para recibir alertas cuando una perforación quede confirmada al cierre de vela."
+        ],
+        "details": [
+          {
+            "title": "Líneas principales",
+            "paragraphs": [
+              "La presentación predeterminada distingue niveles básicos en Silver o LightBlue, importantes en LightSeaGreen y fuertes en Teal. El grosor también varía dentro de cada categoría. No interprete cada variación de grosor como un aumento continuo de fuerza: el grosor se reinicia al subir de categoría y tiene un ciclo en la categoría fuerte.",
+              "Los contactos contabilizados son coincidencias estructurales de pivotes del mismo rol, no cada toque de una vela. Una perforación confirmada puede cambiar el rol de resistencia a soporte o de soporte a resistencia."
+            ]
+          },
+          {
+            "title": "Marcos temporales y etiquetas",
+            "paragraphs": [
+              "Las etiquetas muestran el tiempo desde la última actividad del nivel, no necesariamente desde su creación. Los niveles de corto plazo se presentan como líneas rojas punteadas; no participan en la fuerza ni en las alertas de los niveles principales."
+            ]
+          },
+          {
+            "title": "Alertas que usted configura",
+            "paragraphs": [
+              "Los cuatro canales están desactivados por defecto. En los parámetros del indicador puede habilitar Display alerts, Email alerts, Push alerts y Sound alerts por separado, además de elegir el texto identificador y el archivo de sonido.",
+              "Las alertas se evalúan al cierre de vela mediante un filtro de volatilidad, para seguir perforaciones confirmadas de los niveles principales.",
+              "Para correo y notificaciones móviles, configure primero Tools → Options → Email / Notifications en MetaTrader. Los nombres pueden variar según el idioma del terminal. El sonido elegido debe existir en su carpeta Sounds. La entrega de correo/push depende de la configuración y disponibilidad de esos servicios.",
+              "La carga inicial, la reconstrucción histórica y los pivotes provisionales no generan avisos. Correo y push no se envían desde el Strategy Tester."
+            ]
+          }
+        ],
+        "timeframes": [
+          ["MN1", "MN1"],
+          ["W1", "W1 y MN1"],
+          ["D1", "D1 y W1"],
+          ["H4", "H4 y D1"],
+          ["H1", "H1 y H4"],
+          ["M30 o inferior", "M30 y H1"]
+        ],
+        "installation": [
+          "Elija la ficha de MT4 o MT5 que corresponda a su terminal.",
+          "Realice la compra y siga el procedimiento de instalación que indique MQL5 Market para esa plataforma.",
+          "Adjunte el indicador al gráfico y permita que el terminal cargue y sincronice el historial necesario.",
+          "Revise ATR multiplier, Max. history bars, colores y etiquetas. Los valores predeterminados son 1,50 y 3000 barras para los dos primeros ajustes.",
+          "Si necesita alertas, configure el terminal y active los canales del indicador. La primera carga reconstruye los niveles sin emitir alertas históricas."
+        ],
+        "support": "Para consultas sobre el producto, utilice la ficha de MQL5 correspondiente a su plataforma. Indique MT4/MT5, versión del indicador, símbolo, marco temporal y una descripción del comportamiento. Si adjunta una captura, oculte sus datos de cuenta y cualquier información personal.",
+        "faqs": [
+          {
+            "question": "¿La compra incluye MT4 y MT5?",
+            "answer": "Cada versión se compra por separado. Seleccione la plataforma que utiliza y compruebe su ficha en MQL5 Market."
+          },
+          {
+            "question": "¿Abre operaciones o indica cuándo comprar y vender?",
+            "answer": "No. Presenta referencias visuales y alertas de eventos estructurales; no ejecuta operaciones ni genera señales automáticas de entrada o salida."
+          },
+          {
+            "question": "¿Los niveles pueden cambiar?",
+            "answer": "Los niveles acompañan la evolución de la estructura: pueden agruparse, cambiar de rol o actualizarse al reconstruir el historial. El indicador distingue las referencias confirmadas de los ajustes provisionales para facilitar su interpretación."
+          },
+          {
+            "question": "¿La línea más gruesa siempre es la más fuerte?",
+            "answer": "La fuerza se representa mediante categorías de color y grosor. El grosor se reinicia al promocionar de categoría y recorre un ciclo en la categoría fuerte; conviene leer ambos elementos juntos."
+          },
+          {
+            "question": "¿Por qué no recibo notificaciones al instalarlo?",
+            "answer": "Todos los canales están desactivados inicialmente y la reconstrucción histórica es silenciosa. Active los que necesite; correo y push requieren además la configuración previa del terminal. Debe ocurrir una nueva perforación confirmada que cumpla el filtro de volatilidad."
+          },
+          {
+            "question": "¿Puedo cambiar los colores y las etiquetas?",
+            "answer": "Sí. Los parámetros permiten elegir colores, visibilidad de etiquetas, presentación de líneas en segundo plano, color y tamaño del texto. El multiplicador ATR y el máximo de barras históricas también son configurables."
+          },
+          {
+            "question": "¿Garantiza que el precio respetará un soporte o una resistencia?",
+            "answer": "No. Son referencias de análisis técnico. El precio puede atravesarlas y los resultados dependen de decisiones y condiciones ajenas al indicador."
+          }
+        ],
+        "disclaimer": "Mc Support Resistance es una herramienta de análisis técnico y estudio de estructura del mercado. No constituye asesoramiento financiero ni una recomendación de inversión. No garantiza resultados o rentabilidad. El trading con apalancamiento implica un riesgo elevado de pérdida. La interpretación del gráfico y las decisiones de operación corresponden al usuario.",
+        "closingTitle": "Lleve el contexto estructural a su gráfico",
+        "closing": "Revise la versión de su plataforma, sus funciones y sus condiciones de compra en MQL5 Market.",
+        "ui": {
+          "back": "Volver al portafolio",
+          "skip": "Saltar al contenido",
+          "features": "Características",
+          "how": "Cómo funciona",
+          "screenshots": "Capturas",
+          "platforms": "Elija su plataforma",
+          "faq": "Preguntas frecuentes",
+          "buy": "Comprar para",
+          "separate": "Cada versión se adquiere por separado. Compra, licencia y entrega en MQL5 Market. Compruebe el precio y las condiciones vigentes antes de comprar.",
+          "updates": "Historial de versiones",
+          "installation": "Instalación y primeros pasos",
+          "support": "Soporte del producto",
+          "limits": "Uso responsable",
+          "privacy": "Privacidad",
+          "terms": "Términos",
+          "licenses": "Licencias del sitio",
+          "enlarge": "Ampliar captura",
+          "close": "Cerrar captura",
+          "zoomIn": "Ver a tamaño real",
+          "zoomOut": "Ajustar a pantalla",
+          "original": "Abrir imagen original",
+          "timeframes": "Contexto temporal",
+          "chart": "Gráfico",
+          "sources": "Fuentes de los niveles principales",
+          "version": "Versión",
+          "screenshotNote": "Las capturas ilustran la interfaz y el análisis del gráfico, no resultados de una estrategia.",
+          "overview": "Niveles y contexto estructural",
+          "settings": "Configuración de alertas",
+          "settingsCaption": "Los canales de alerta se activan de forma independiente; en este ejemplo están desactivados.",
+          "history": "Precios consultados el 8 de noviembre de 2026. Versiones independientes por plataforma."
+        }
+      },
+      "en": {
+        "path": "/en/products/mc-support-resistance/",
+        "seoTitle": "Mc Support Resistance for MT4 and MT5 | Mcofit",
+        "description": "Explore support and resistance levels, timeframe context and confirmed penetration alerts. Mc Support Resistance for MetaTrader 4 and 5.",
+        "eyebrow": "Visual indicator for MetaTrader 4 and MetaTrader 5",
+        "headline": "Support and resistance with context, directly on your chart",
+        "intro": "Mc Support Resistance identifies and organizes support and resistance so you can study price structure with clear references. Bring levels, timeframe context and confirmed penetration alerts together in one tool for MetaTrader.",
+        "highlights": [
+          "Principal levels with a visual hierarchy.",
+          "Context from related timeframes.",
+          "Optional platform, email, mobile push and sound alerts."
+        ],
+        "benefitsTitle": "A more organized way to read your chart",
+        "benefits": [
+          {
+            "title": "References grouped by volatility",
+            "text": "Nearby levels are grouped using a volatility-aware approach. Adjust grouping sensitivity to organize the references you use in your analysis."
+          },
+          {
+            "title": "Structural activity you can distinguish visually",
+            "text": "Distinguish basic, important and strong levels through colors and widths that reflect structural activity. A presentation that helps you locate references and compare their visual context."
+          },
+          {
+            "title": "Timeframe context without stacking every timeframe",
+            "text": "The indicator uses up to two related sources. Principal level labels show price and time since their latest activity. Labels from the immediately higher source also identify that timeframe."
+          },
+          {
+            "title": "Notifications after a penetration is confirmed",
+            "text": "Enable the channels you need to monitor principal level penetrations evaluated after candle close. When the same candle confirms several events, they are combined into one notification per indicator instance."
+          }
+        ],
+        "steps": [
+          "Add it to your chart. View principal levels and short-term references alongside price.",
+          "Read the context. Compare visual categories, timeframes and latest-activity labels.",
+          "Make it your own. Customize colors, labels and grouping sensitivity to suit your workflow.",
+          "Enable your alerts. Choose how to receive notifications when a penetration is confirmed at candle close."
+        ],
+        "details": [
+          {
+            "title": "Principal lines",
+            "paragraphs": [
+              "Default colors distinguish basic levels in Silver or LightBlue, important levels in LightSeaGreen and strong levels in Teal. Line width also varies within each category. A change in width does not always mean increasing strength: width resets when a level moves to a higher category and cycles within the strong category.",
+              "Recorded contacts are structural matches from pivots of the same role, rather than every candle touch. A confirmed penetration can change resistance into support or support into resistance."
+            ]
+          },
+          {
+            "title": "Timeframes and labels",
+            "paragraphs": [
+              "Labels show time since a level's latest activity, which is not necessarily its creation date. Short-term levels appear as red dotted lines; they do not participate in the strength model or alerts for principal levels."
+            ]
+          },
+          {
+            "title": "Alerts you configure",
+            "paragraphs": [
+              "All four channels are disabled by default. In the indicator inputs, enable Display alerts, Email alerts, Push alerts and Sound alerts independently. You can also choose the alert caption and sound file.",
+              "Alerts are evaluated at candle close using a volatility filter to monitor confirmed penetrations of principal levels.",
+              "For email and mobile push, configure Tools → Options → Email / Notifications in MetaTrader first. Labels may vary with the terminal language. The selected sound file must exist in the terminal's Sounds folder. Email and push delivery depend on terminal settings and service availability.",
+              "Initial loading, historical rebuilding and provisional pivots do not trigger alerts. Email and push are not sent from the Strategy Tester."
+            ]
+          }
+        ],
+        "timeframes": [
+          ["MN1", "MN1"],
+          ["W1", "W1 and MN1"],
+          ["D1", "D1 and W1"],
+          ["H4", "H4 and D1"],
+          ["H1", "H1 and H4"],
+          ["M30 or lower", "M30 and H1"]
+        ],
+        "installation": [
+          "Choose the MT4 or MT5 listing that matches your terminal.",
+          "Purchase the product and follow the installation process provided by MQL5 Market for that platform.",
+          "Attach the indicator to a chart and allow the terminal to load and synchronize the required history.",
+          "Review ATR multiplier, Max. history bars, colors and labels. The first two settings default to 1.50 and 3000 bars.",
+          "If you want alerts, configure your terminal and enable the indicator channels. Initial loading rebuilds levels without issuing historical alerts."
+        ],
+        "support": "For product questions, use the MQL5 listing for your platform. Include MT4/MT5, indicator version, symbol, timeframe and a description of the behavior. Hide account details and personal information in any screenshot you share.",
+        "faqs": [
+          {
+            "question": "Does one purchase include both MT4 and MT5?",
+            "answer": "Each version is purchased separately. Choose your platform and check its MQL5 Market listing."
+          },
+          {
+            "question": "Does it place trades or tell me when to buy and sell?",
+            "answer": "No. It provides visual references and structural event alerts. It does not execute trades or generate automatic entry or exit signals."
+          },
+          {
+            "question": "Can the levels change?",
+            "answer": "Levels follow the evolution of market structure: they can merge, change role or update when history is rebuilt. The indicator distinguishes confirmed references from provisional adjustments to support their interpretation."
+          },
+          {
+            "question": "Is the thickest line always the strongest?",
+            "answer": "Strength is represented by color and width categories. Width resets on category promotion and cycles within the strong category, so both elements should be read together."
+          },
+          {
+            "question": "Why am I not receiving notifications after installation?",
+            "answer": "All channels start disabled and historical rebuilding is silent. Enable the channels you need; email and push also require terminal configuration. A new confirmed penetration must meet the volatility filter before an alert is generated."
+          },
+          {
+            "question": "Can I change colors and labels?",
+            "answer": "Yes. Inputs include level colors, label visibility, background line display, and label color and size. The ATR multiplier and maximum history bars are also configurable."
+          },
+          {
+            "question": "Does it guarantee that price will respect support or resistance?",
+            "answer": "No. These are technical analysis references. Price can move through them, and results depend on decisions and conditions beyond the indicator."
+          }
+        ],
+        "disclaimer": "Mc Support Resistance is a tool for technical analysis and market structure study. It is not financial advice or an investment recommendation and does not guarantee results or profitability. Leveraged trading involves a high risk of loss. Chart interpretation and trading decisions remain the user's responsibility.",
+        "closingTitle": "Bring structural context to your chart",
+        "closing": "Review your platform's version, features and purchase terms on MQL5 Market.",
+        "ui": {
+          "back": "Back to portfolio (Spanish)",
+          "skip": "Skip to content",
+          "features": "Features",
+          "how": "How it works",
+          "screenshots": "Screenshots",
+          "platforms": "Choose your platform",
+          "faq": "Frequently asked questions",
+          "buy": "Buy for",
+          "separate": "Each version is purchased separately. Purchase, licensing and delivery through MQL5 Market. Check the current price and terms before buying.",
+          "updates": "Version updates",
+          "installation": "Installation and first steps",
+          "support": "Product support",
+          "limits": "Responsible use",
+          "privacy": "Privacy (Spanish)",
+          "terms": "Terms (Spanish)",
+          "licenses": "Website licenses (Spanish)",
+          "enlarge": "Enlarge screenshot",
+          "close": "Close screenshot",
+          "zoomIn": "View actual size",
+          "zoomOut": "Fit to screen",
+          "original": "Open original image",
+          "timeframes": "Timeframe context",
+          "chart": "Chart",
+          "sources": "Principal level sources",
+          "version": "Version",
+          "screenshotNote": "Screenshots illustrate the interface and chart analysis, not strategy performance.",
+          "overview": "Levels and structural context",
+          "settings": "Alert settings",
+          "settingsCaption": "Alert channels can be enabled independently; they are disabled in this example.",
+          "history": "Prices checked on November 8, 2026. Separate platform versions."
+        }
+      }
+    }
+  }
+]

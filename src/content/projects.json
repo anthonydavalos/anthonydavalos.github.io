@@ -1,5 +1,17 @@
 [
   {
+    "id": "mc-support-resistance",
+    "order": 5,
+    "title": "Mc Support Resistance",
+    "summary": "Soportes y resistencias con jerarquía visual, contexto temporal y alertas de perforación confirmada para MetaTrader 4 y 5.",
+    "category": "Software · MT4 / MT5",
+    "status": "published",
+    "filters": ["filter-software"],
+    "imageSrc": "/images/projects/mc-support-resistance.webp",
+    "imageAlt": "Mc Support Resistance en un gráfico mensual de GBPUSD en MetaTrader 4",
+    "productPath": "/productos/mc-support-resistance/"
+  },
+  {
     "id": "streamliner-ai",
     "order": 10,
     "title": "Streamliner AI",

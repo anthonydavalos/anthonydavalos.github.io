@@ -1,0 +1,29 @@
+---
+import check from "bootstrap-icons/icons/check2.svg?raw";
+import layers from "bootstrap-icons/icons/layers.svg?raw";
+import chart from "bootstrap-icons/icons/bar-chart.svg?raw";
+import clock from "bootstrap-icons/icons/clock-history.svg?raw";
+import bell from "bootstrap-icons/icons/bell.svg?raw";
+import arrow from "bootstrap-icons/icons/arrow-up-right.svg?raw";
+
+const icons = { check, layers, chart, clock, bell, arrow };
+interface Props {
+  name: keyof typeof icons;
+}
+const { name } = Astro.props;
+---
+
+<span class="product-icon" aria-hidden="true" set:html={icons[name]} />
+
+<style>
+  .product-icon {
+    display: inline-flex;
+    flex: none;
+    line-height: 1;
+    vertical-align: -0.125em;
+  }
+  .product-icon :global(svg) {
+    width: 1em;
+    height: 1em;
+  }
+</style>
