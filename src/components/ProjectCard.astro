@@ -10,6 +10,7 @@ const statusLabels = {
   featured: "Destacado",
   draft: "Borrador",
   archived: "Archivado",
+  published: "Publicado",
 } as const;
 ---
 
@@ -24,7 +25,9 @@ const statusLabels = {
     </div>
     <h3>
       {
-        project.repositoryUrl ? (
+        project.productPath ? (
+          <a href={project.productPath}>{project.title}</a>
+        ) : project.repositoryUrl ? (
           <a href={project.repositoryUrl} target="_blank" rel="noreferrer">
             {project.title}
           </a>
@@ -34,6 +37,13 @@ const statusLabels = {
       }
     </h3>
     <p>{project.summary}</p>
+    {
+      project.productPath && (
+        <a class="project-card__repository" href={project.productPath}>
+          Ver producto <i class="bi bi-arrow-right" aria-hidden="true" />
+        </a>
+      )
+    }
     {
       project.repositoryUrl && (
         <a

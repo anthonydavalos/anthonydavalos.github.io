@@ -38,7 +38,7 @@ const projects = defineCollection({
       title: textSchema,
       summary: textSchema,
       category: textSchema,
-      status: z.enum(["featured", "draft", "archived"]),
+      status: z.enum(["featured", "draft", "archived", "published"]),
       filters: z
         .array(
           z.enum([
@@ -53,6 +53,11 @@ const projects = defineCollection({
       imageSrc: z.string().trim().startsWith("/images/projects/"),
       imageAlt: textSchema,
       repositoryUrl: z.url().optional(),
+      productPath: z
+        .string()
+        .startsWith("/productos/")
+        .endsWith("/")
+        .optional(),
     })
     .strict()
     .superRefine((project, context) => {
@@ -60,6 +65,7 @@ const projects = defineCollection({
         featured: "filter-featured",
         draft: "filter-draft",
         archived: "filter-archived",
+        published: "filter-software",
       } as const;
       const statusFilter = statusFilters[project.status];
 
@@ -183,4 +189,94 @@ const posts = defineCollection({
     }),
 });
 
-export const collections = { projects, labs, achievements, posts };
+const paragraphSchema = z.array(textSchema).min(1);
+const localeSchema = z
+  .object({
+    path: z.string().startsWith("/").endsWith("/"),
+    seoTitle: textSchema,
+    description: textSchema,
+    eyebrow: textSchema,
+    headline: textSchema,
+    intro: textSchema,
+    highlights: paragraphSchema,
+    benefitsTitle: textSchema,
+    benefits: z
+      .array(z.object({ title: textSchema, text: textSchema }).strict())
+      .min(1),
+    steps: paragraphSchema,
+    details: z
+      .array(
+        z.object({ title: textSchema, paragraphs: paragraphSchema }).strict(),
+      )
+      .min(1),
+    timeframes: z.array(z.tuple([textSchema, textSchema])).length(6),
+    installation: paragraphSchema,
+    support: textSchema,
+    faqs: z
+      .array(z.object({ question: textSchema, answer: textSchema }).strict())
+      .min(1),
+    disclaimer: textSchema,
+    closingTitle: textSchema,
+    closing: textSchema,
+    ui: z
+      .object({
+        back: textSchema,
+        skip: textSchema,
+        features: textSchema,
+        how: textSchema,
+        screenshots: textSchema,
+        platforms: textSchema,
+        faq: textSchema,
+        buy: textSchema,
+        separate: textSchema,
+        updates: textSchema,
+        installation: textSchema,
+        support: textSchema,
+        limits: textSchema,
+        privacy: textSchema,
+        terms: textSchema,
+        licenses: textSchema,
+        enlarge: textSchema,
+        close: textSchema,
+        zoomIn: textSchema,
+        zoomOut: textSchema,
+        original: textSchema,
+        timeframes: textSchema,
+        chart: textSchema,
+        sources: textSchema,
+        version: textSchema,
+        screenshotNote: textSchema,
+        overview: textSchema,
+        settings: textSchema,
+        settingsCaption: textSchema,
+        history: textSchema,
+      })
+      .strict(),
+  })
+  .strict();
+const products = defineCollection({
+  loader: file("./src/content/products.json"),
+  schema: z
+    .object({
+      id: idSchema,
+      name: textSchema,
+      priceCheckedAt: z.iso.date(),
+      platforms: z
+        .array(
+          z
+            .object({
+              name: z.enum(["MT4", "MT5"]),
+              version: textSchema,
+              price: z.number().positive(),
+              currency: z.literal("USD"),
+              url: z.url().startsWith("https://www.mql5.com/"),
+            })
+            .strict(),
+        )
+        .length(2),
+      locales: z.object({ es: localeSchema, en: localeSchema }).strict(),
+    })
+    .strict(),
+});
+
+export const collections = { projects, labs, achievements, posts, products };

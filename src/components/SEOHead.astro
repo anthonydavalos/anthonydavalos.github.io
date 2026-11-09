@@ -21,4 +21,5 @@ const canonicalURL = new URL(canonicalPath, Astro.site ?? Astro.url.origin);
 <meta name="theme-color" content="#ffffff" />
 {noindex && <meta name="robots" content="noindex, nofollow" />}
 <link rel="canonical" href={canonicalURL} />
+<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
 <title>{title}</title>

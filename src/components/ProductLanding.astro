@@ -1,0 +1,1007 @@
+---
+import { getEntry } from "astro:content";
+import { Font, Image } from "astro:assets";
+import SEOHead from "./SEOHead.astro";
+import ProductIcon from "./ProductIcon.astro";
+import mt4Chart from "../assets/products/mc-support-resistance/mt4-chart.webp";
+import mt5Chart from "../assets/products/mc-support-resistance/mt5-chart.webp";
+import mt4Settings from "../assets/products/mc-support-resistance/mt4-settings.webp";
+import mt5Settings from "../assets/products/mc-support-resistance/mt5-settings.webp";
+import "../styles/global.css";
+
+interface Props {
+  lang: "es" | "en";
+}
+const { lang } = Astro.props;
+const entry = await getEntry("products", "mc-support-resistance");
+if (!entry) throw new Error("Product content is missing");
+const product = entry.data;
+const copy = product.locales[lang];
+const ui = copy.ui;
+const canonical = new URL(copy.path, Astro.site!);
+const benefitIcons = ["layers", "chart", "clock", "bell"] as const;
+const gallery = [
+  {
+    src: mt4Chart,
+    platform: "MT4",
+    caption: ui.overview,
+    alt: `Mc Support Resistance MT4 1.4 · GBPUSD MN1`,
+  },
+  {
+    src: mt5Chart,
+    platform: "MT5",
+    caption: ui.overview,
+    alt: `Mc Support Resistance MT5 1.3 · EURUSD MN1`,
+  },
+  {
+    src: mt4Settings,
+    platform: "MT4",
+    caption: ui.settings,
+    alt: `${ui.settings} · MT4 1.4`,
+  },
+  {
+    src: mt5Settings,
+    platform: "MT5",
+    caption: ui.settings,
+    alt: `${ui.settings} · MT5 1.3`,
+  },
+] as const;
+const navigation = [
+  ["features", ui.features],
+  ["how", ui.how],
+  ["screenshots", ui.screenshots],
+  ["platforms", ui.platforms],
+  ["faq", ui.faq],
+];
+---
+
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <SEOHead
+      title={copy.seoTitle}
+      description={copy.description}
+      canonicalPath={copy.path}
+    />
+    <Font
+      cssVariable="--font-open-sans"
+      preload={[{ weight: 400, style: "normal", subset: "latin" }]}
+    />
+    <Font
+      cssVariable="--font-raleway"
+      preload={[{ weight: 700, style: "normal", subset: "latin" }]}
+    />
+    {
+      (["es", "en"] as const).map((locale) => (
+        <link
+          rel="alternate"
+          hreflang={locale}
+          href={new URL(product.locales[locale].path, Astro.site!)}
+        />
+      ))
+    }
+    <link
+      rel="alternate"
+      hreflang="x-default"
+      href={new URL(product.locales.es.path, Astro.site!)}
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={copy.seoTitle} />
+    <meta property="og:description" content={copy.description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:locale" content={lang === "es" ? "es_PE" : "en_US"} />
+    <meta property="og:image" content={new URL(mt4Chart.src, Astro.site!)} />
+    <meta property="og:image:alt" content={gallery[0].alt} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={copy.seoTitle} />
+    <meta name="twitter:description" content={copy.description} />
+    <meta name="twitter:image" content={new URL(mt4Chart.src, Astro.site!)} />
+  </head>
+  <body>
+    <a class="skip-link" href="#main-content">{ui.skip}</a>
+    <header class="product-header">
+      <div class="container header-row">
+        <a class="product-brand" href="/"
+          >Mcofit <span>· Anthony Davalos</span></a
+        >
+        <nav
+          aria-label={lang === "es"
+            ? "Idioma del producto"
+            : "Product language"}
+        >
+          <a
+            href={product.locales.es.path}
+            lang="es"
+            hreflang="es"
+            aria-current={lang === "es" ? "page" : undefined}>Español</a
+          >
+          <span aria-hidden="true"> | </span>
+          <a
+            href={product.locales.en.path}
+            lang="en"
+            hreflang="en"
+            aria-current={lang === "en" ? "page" : undefined}>English</a
+          >
+        </nav>
+      </div>
+    </header>
+    <main id="main-content">
+      <section class="product-hero section">
+        <div class="container">
+          <a class="back-link" href="/">← {ui.back}</a>
+          <div class="hero-layout">
+            <div class="hero-copy">
+              <p class="eyebrow">{copy.eyebrow}</p>
+              <p class="product-name">{product.name}</p>
+              <h1>{copy.headline}</h1>
+            </div>
+            <figure class="hero-chart">
+              <a
+                href={mt4Chart.src}
+                data-screenshot
+                aria-label={`${ui.enlarge}: ${gallery[0].alt}`}
+              >
+                <Image
+                  src={mt4Chart}
+                  alt={gallery[0].alt}
+                  width={960}
+                  widths={[480, 760, 960]}
+                  sizes="(min-width: 1100px) 52vw, 100vw"
+                  loading="eager"
+                  fetchpriority="high"
+                />
+              </a>
+              <figcaption><span>MT4 · 1.4</span> GBPUSD · MN1</figcaption>
+            </figure>
+            <div class="hero-description">
+              <p class="product-lead">{copy.intro}</p>
+              <div class="actions">
+                {
+                  product.platforms.map((platform) => (
+                    <a class="button" href={platform.url}>
+                      {ui.buy} {platform.name}{" "}
+                      <span>— USD {platform.price}</span>
+                    </a>
+                  ))
+                }
+              </div>
+              <p class="purchase-note">{ui.separate}</p>
+            </div>
+          </div>
+          <ul class="highlights">
+            {
+              copy.highlights.map((text) => (
+                <li>
+                  <ProductIcon name="check" /> {text}
+                </li>
+              ))
+            }
+          </ul>
+        </div>
+      </section>
+      <nav
+        class="section-nav"
+        aria-label={lang === "es"
+          ? "Secciones del producto"
+          : "Product sections"}
+      >
+        <div class="container">
+          {navigation.map(([id, label]) => <a href={`#${id}`}>{label}</a>)}
+        </div>
+      </nav>
+      <section class="section product-soft" id="features">
+        <div class="container">
+          <div class="section-heading">
+            <p class="eyebrow">{ui.features}</p><h2>{copy.benefitsTitle}</h2>
+          </div>
+          <div class="benefit-grid">
+            {
+              copy.benefits.map((benefit, index) => (
+                <article class="benefit">
+                  <>
+                    <ProductIcon name={benefitIcons[index] ?? "layers"} />
+                    <h3>{benefit.title}</h3>
+                    <p>{benefit.text}</p>
+                  </>
+                </article>
+              ))
+            }
+          </div>
+        </div>
+      </section>
+      <section class="section" id="how">
+        <div class="container">
+          <div class="section-heading">
+            <p class="eyebrow">{product.name}</p><h2>{ui.how}</h2>
+          </div>
+          <ol class="step-grid">
+            {
+              copy.steps.map((step) => {
+                const split = step.indexOf(".");
+                return (
+                  <li>
+                    <>
+                      <h3>{step.slice(0, split)}</h3>
+                      <p>{step.slice(split + 1).trim()}</p>
+                    </>
+                  </li>
+                );
+              })
+            }
+          </ol>
+          <div class="detail-grid">
+            {
+              copy.details.map((detail, index) => (
+                <article>
+                  <h3>{detail.title}</h3>
+                  {detail.paragraphs.map((p) => (
+                    <p>{p}</p>
+                  ))}
+                  {index === 1 && (
+                    <div class="table-wrapper">
+                      <table>
+                        <caption>{ui.timeframes}</caption>
+                        <thead>
+                          <tr>
+                            <th scope="col">{ui.chart}</th>
+                            <th scope="col">{ui.sources}</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {copy.timeframes.map(([chart, sources]) => (
+                            <tr>
+                              <th scope="row">{chart}</th>
+                              <td>{sources}</td>
+                            </tr>
+                          ))}
+                        </tbody>
+                      </table>
+                    </div>
+                  )}
+                </article>
+              ))
+            }
+          </div>
+        </div>
+      </section>
+      <section class="section product-soft" id="screenshots">
+        <div class="container">
+          <div class="section-heading">
+            <p class="eyebrow">MT4 · MT5</p><h2>{ui.screenshots}</h2><p>
+              {ui.screenshotNote}
+            </p>
+          </div>
+          <div class="gallery">
+            {
+              gallery.map((item, index) => (
+                <figure>
+                  <>
+                    <a
+                      href={item.src.src}
+                      data-screenshot
+                      aria-label={`${ui.enlarge}: ${item.alt}`}
+                    >
+                      <Image
+                        src={item.src}
+                        alt={item.alt}
+                        widths={[480, 760, 1200]}
+                        sizes="(min-width: 768px) 45vw, 95vw"
+                        width={1200}
+                        loading="lazy"
+                      />
+                    </a>
+                    <figcaption>
+                      <strong>
+                        {item.platform} · {item.caption}
+                      </strong>
+                      {index >= 2 && <p>{ui.settingsCaption}</p>}
+                    </figcaption>
+                  </>
+                </figure>
+              ))
+            }
+          </div>
+        </div>
+      </section>
+      <section class="section" id="platforms">
+        <div class="container">
+          <div class="section-heading">
+            <p class="eyebrow">MQL5 Market</p><h2>{ui.platforms}</h2><p>
+              {ui.separate}
+            </p>
+          </div>
+          <div class="platform-grid">
+            {
+              product.platforms.map((platform) => (
+                <article class="platform-card">
+                  <>
+                    <p class="eyebrow">
+                      MetaTrader {platform.name === "MT4" ? "4" : "5"}
+                    </p>
+                    <h3>
+                      {product.name}
+                      {platform.name === "MT5" ? " MT5" : ""}
+                    </h3>
+                    <p>
+                      {ui.version} {platform.version}
+                    </p>
+                    <p class="price">
+                      <span>USD</span> {platform.price}
+                    </p>
+                    <a class="button" href={platform.url}>
+                      {ui.buy} {platform.name} <ProductIcon name="arrow" />
+                    </a>
+                    <a class="updates" href={`${platform.url}/updates`}>
+                      {ui.updates}
+                    </a>
+                  </>
+                </article>
+              ))
+            }
+          </div>
+          <p class="price-note">{ui.history}</p>
+          <div class="setup-grid">
+            <article>
+              <h2>{ui.installation}</h2><ol>
+                {copy.installation.map((step) => <li>{step}</li>)}
+              </ol>
+            </article><article>
+              <h2>{ui.support}</h2><p>{copy.support}</p><div class="actions">
+                {
+                  product.platforms.map((p) => (
+                    <a href={p.url}>
+                      {ui.support} {p.name} ↗
+                    </a>
+                  ))
+                }
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+      <section class="section product-soft" id="faq">
+        <div class="container faq-container">
+          <div class="section-heading"><h2>{ui.faq}</h2></div>{
+            copy.faqs.map((faq) => (
+              <details>
+                <>
+                  <summary>{faq.question}</summary>
+                  <p>{faq.answer}</p>
+                </>
+              </details>
+            ))
+          }
+        </div>
+      </section>
+      <section class="section closing">
+        <div class="container">
+          <p class="eyebrow">{product.name}</p><h2>{copy.closingTitle}</h2><p>
+            {copy.closing}
+          </p><div class="actions">
+            {
+              product.platforms.map((p) => (
+                <a class="button" href={p.url}>
+                  {ui.buy} {p.name} — USD {p.price}
+                </a>
+              ))
+            }
+          </div><p class="purchase-note">{ui.separate}</p>
+        </div>
+      </section>
+      <aside class="responsible container">
+        <h2>{ui.limits}</h2><p>{copy.disclaimer}</p>
+      </aside>
+    </main>
+    <footer class="product-footer container">
+      <p>Mcofit · Anthony Davalos</p><nav
+        aria-label={lang === "es" ? "Enlaces del sitio" : "Website links"}
+      >
+        <a href="/">{ui.back}</a><a href="/privacidad/">{ui.privacy}</a><a
+          href="/terminos/">{ui.terms}</a
+        ><a href="/licencias/">{ui.licenses}</a>
+      </nav>
+    </footer>
+    <dialog data-image-dialog aria-label={ui.enlarge}>
+      <div class="image-toolbar">
+        <button
+          class="button"
+          type="button"
+          data-image-zoom
+          data-zoom-in={ui.zoomIn}
+          data-zoom-out={ui.zoomOut}
+          aria-pressed="false"
+          aria-controls="product-image-viewport">{ui.zoomIn}</button
+        >
+        <a
+          data-image-original
+          href={mt4Chart.src}
+          target="_blank"
+          rel="noopener noreferrer">{ui.original} ↗</a
+        >
+        <form method="dialog">
+          <button class="button" aria-label={ui.close}>{ui.close} ×</button>
+        </form>
+      </div>
+      <div
+        class="image-viewport"
+        id="product-image-viewport"
+        data-zoomed="false"
+        tabindex="0"
+        role="region"
+        aria-label={ui.enlarge}
+      >
+        <img alt="" />
+      </div>
+    </dialog>
+    <script>
+      const dialog = document.querySelector<HTMLDialogElement>(
+        "[data-image-dialog]",
+      );
+      let trigger: HTMLAnchorElement | null = null;
+      if (dialog && typeof dialog.showModal === "function") {
+        const viewport = dialog.querySelector<HTMLElement>(".image-viewport");
+        const zoom =
+          dialog.querySelector<HTMLButtonElement>("[data-image-zoom]");
+        const original = dialog.querySelector<HTMLAnchorElement>(
+          "[data-image-original]",
+        );
+        zoom?.addEventListener("click", () => {
+          if (!viewport) return;
+          const zoomed = viewport.dataset.zoomed !== "true";
+          viewport.dataset.zoomed = String(zoomed);
+          zoom.setAttribute("aria-pressed", String(zoomed));
+          zoom.textContent =
+            (zoomed ? zoom.dataset.zoomOut : zoom.dataset.zoomIn) ?? "";
+          viewport.scrollTo(0, 0);
+          viewport.focus();
+        });
+        document
+          .querySelectorAll<HTMLAnchorElement>("[data-screenshot]")
+          .forEach((link) =>
+            link.addEventListener("click", (event) => {
+              if (
+                event.ctrlKey ||
+                event.metaKey ||
+                event.shiftKey ||
+                event.altKey
+              )
+                return;
+              const image = dialog.querySelector("img");
+              if (!image) return;
+              event.preventDefault();
+              trigger = link;
+              image.src = link.href;
+              image.alt = link.querySelector("img")?.alt ?? "";
+              if (original) original.href = link.href;
+              if (viewport) {
+                viewport.dataset.zoomed = "false";
+                viewport.scrollTo(0, 0);
+              }
+              if (zoom) {
+                zoom.setAttribute("aria-pressed", "false");
+                zoom.textContent = zoom.dataset.zoomIn ?? "";
+              }
+              dialog.showModal();
+            }),
+          );
+        dialog.addEventListener("close", () => trigger?.focus());
+        dialog.addEventListener("click", (event) => {
+          if (event.target === dialog) dialog.close();
+        });
+      }
+    </script>
+  </body>
+</html>
+
+<style>
+  .button {
+    color: #1d6fa5;
+  }
+  .button:hover,
+  .button:focus-visible {
+    color: #fff;
+    background: #1d6fa5;
+  }
+  .product-header {
+    background: #fff;
+    border-bottom: 1px solid var(--border-color);
+  }
+  .header-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding-block: 1.2rem;
+    flex-wrap: wrap;
+  }
+  .product-brand {
+    font-family: var(--heading-font);
+    color: var(--heading-color);
+    font-weight: 700;
+    font-size: 1.4rem;
+    text-decoration: none;
+  }
+  .product-brand span {
+    font-size: 0.85rem;
+    font-weight: 500;
+  }
+  .header-row nav {
+    font-size: 0.85rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+  }
+  .header-row nav a {
+    display: inline-flex;
+    min-height: 44px;
+    min-width: 52px;
+    padding: 0.5rem;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 2px solid transparent;
+  }
+  .header-row [aria-current] {
+    color: var(--heading-color);
+    font-weight: 700;
+    border-bottom-color: var(--accent-color);
+  }
+  .product-hero {
+    padding-top: 2rem;
+    padding-bottom: 2.5rem;
+  }
+  .back-link {
+    font-size: 0.82rem;
+    display: inline-block;
+    margin-bottom: 2.5rem;
+  }
+  .hero-layout {
+    display: grid;
+    grid-template-columns: 1fr 1.1fr;
+    grid-template-areas: "title chart" "description chart";
+    gap: 0 3rem;
+    align-items: center;
+  }
+  .product-name {
+    font-family: var(--heading-font);
+    font-weight: 600;
+    color: var(--accent-strong);
+  }
+  .hero-copy {
+    grid-area: title;
+  }
+  .hero-description {
+    grid-area: description;
+  }
+  h1 {
+    font-size: clamp(2rem, 3.7vw, 3rem);
+    font-weight: 700;
+    letter-spacing: -0.035em;
+    max-width: 18ch;
+    margin-bottom: 1.5rem;
+  }
+  .product-lead {
+    font-size: 1.06rem;
+    line-height: 1.85;
+    color: var(--subtitle-color);
+  }
+  .hero-chart {
+    grid-area: chart;
+    padding: 0.65rem;
+    border: 1px solid var(--border-color);
+    border-radius: 1rem;
+    background: #fff;
+    box-shadow: var(--shadow-soft);
+    margin: 0;
+  }
+  .hero-chart img {
+    width: 100%;
+    height: auto;
+    border-radius: 0.5rem;
+  }
+  .hero-chart figcaption {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.7rem 0.3rem 0.15rem;
+    font-size: 0.75rem;
+    color: var(--subtitle-color);
+  }
+  .hero-chart figcaption span {
+    font-weight: 700;
+    color: var(--accent-strong);
+  }
+  .actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-block: 1.5rem;
+  }
+  .actions .button {
+    gap: 0.4rem;
+    padding: 0.65rem 1.1rem;
+    font-size: 0.82rem;
+  }
+  .purchase-note {
+    font-size: 0.78rem;
+    max-width: 44rem;
+    line-height: 1.7;
+    margin-bottom: 0;
+  }
+  .highlights {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1rem;
+    list-style: none;
+    padding: 2rem 0 0;
+    margin: 1.5rem 0 0;
+    border-top: 1px solid var(--border-color);
+    font-size: 0.85rem;
+  }
+  .highlights :global(.product-icon) {
+    color: var(--accent-strong);
+  }
+  .section-nav {
+    background: #fff;
+    border-block: 1px solid var(--border-color);
+  }
+  .section-nav .container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem 1.8rem;
+    padding-block: 1rem;
+  }
+  .section-nav a {
+    font-size: 0.85rem;
+    text-decoration: none;
+  }
+  .product-soft {
+    background: var(--soft-background-color, #f3f9fd);
+  }
+  .benefit-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.8rem;
+  }
+  .benefit :global(.product-icon) {
+    color: var(--accent-color);
+    font-size: 2.5rem;
+  }
+  .benefit h3 {
+    font-size: 1.25rem;
+    margin-block: 1rem;
+  }
+  .benefit p {
+    font-size: 0.92rem;
+  }
+  .step-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+    counter-reset: steps;
+    list-style: none;
+    padding: 0;
+    margin-bottom: 4rem;
+  }
+  .step-grid li {
+    counter-increment: steps;
+  }
+  .step-grid li:before {
+    content: counter(steps, decimal-leading-zero);
+    font-family: var(--heading-font);
+    color: var(--accent-strong);
+    font-size: 2rem;
+  }
+  .step-grid h3 {
+    font-size: 1.1rem;
+    margin-block: 1rem;
+  }
+  .step-grid p {
+    font-size: 0.9rem;
+  }
+  .detail-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem 3rem;
+    border-top: 1px solid var(--border-color);
+    padding-top: 3rem;
+  }
+  .detail-grid article:last-child {
+    grid-column: 1/-1;
+    max-width: 55rem;
+  }
+  .detail-grid h3 {
+    font-size: 1.5rem;
+  }
+  .detail-grid p {
+    white-space: pre-line;
+    font-size: 0.94rem;
+  }
+  .table-wrapper {
+    overflow-x: auto;
+  }
+  table {
+    width: 100%;
+    font-size: 0.85rem;
+  }
+  caption {
+    caption-side: top;
+  }
+  th,
+  td {
+    padding: 0.5rem;
+    border-bottom: 1px solid var(--border-color);
+  }
+  .gallery {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+  }
+  .gallery figure {
+    margin: 0;
+    padding: 0.6rem;
+    background: #fff;
+    border: 1px solid var(--border-color);
+    border-radius: 0.7rem;
+  }
+  .gallery img {
+    width: 100%;
+    height: auto;
+  }
+  .gallery figcaption {
+    padding: 1rem 0.5rem 0.4rem;
+    font-size: 0.85rem;
+  }
+  .gallery figcaption p {
+    margin: 0.5rem 0 0;
+    font-size: 0.8rem;
+  }
+  [data-screenshot] {
+    display: block;
+    cursor: zoom-in;
+  }
+  .platform-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    max-width: 56rem;
+    margin: auto;
+  }
+  .platform-card {
+    padding: 2.2rem;
+    border: 1px solid var(--border-color);
+    border-top: 3px solid var(--accent-color);
+    border-radius: 0.75rem;
+    background: #fff;
+    box-shadow: var(--shadow-card);
+  }
+  .platform-card h3 {
+    font-size: 1.45rem;
+  }
+  .platform-card .button {
+    width: 100%;
+    gap: 0.75rem;
+  }
+  .price {
+    font-family: var(--heading-font);
+    font-size: 3rem;
+    font-weight: 700;
+    color: var(--heading-color);
+  }
+  .price span {
+    font-size: 1rem;
+    font-weight: 500;
+  }
+  .updates {
+    display: block;
+    font-size: 0.8rem;
+    text-align: center;
+    margin-top: 1rem;
+  }
+  .price-note {
+    text-align: center;
+    font-size: 0.75rem;
+    margin-block: 1.2rem 4rem;
+  }
+  .setup-grid {
+    display: grid;
+    grid-template-columns: 1.3fr 1fr;
+    gap: 4rem;
+  }
+  .setup-grid h2 {
+    font-size: 1.7rem;
+  }
+  .setup-grid li {
+    padding: 0 0 0.7rem 0.4rem;
+  }
+  .setup-grid p,
+  .setup-grid li {
+    font-size: 0.92rem;
+  }
+  .faq-container {
+    max-width: 55rem;
+  }
+  details {
+    border-bottom: 1px solid var(--border-color);
+    padding: 1.2rem 0;
+  }
+  summary {
+    font-family: var(--heading-font);
+    font-weight: 600;
+    cursor: pointer;
+  }
+  details p {
+    margin: 1rem 0 0;
+    font-size: 0.93rem;
+  }
+  .closing {
+    text-align: center;
+  }
+  .closing h2 {
+    font-size: clamp(1.8rem, 4vw, 2.5rem);
+  }
+  .closing .actions {
+    justify-content: center;
+  }
+  .closing .purchase-note {
+    margin: auto;
+  }
+  .responsible {
+    padding-block: 2rem;
+    border-top: 1px solid var(--border-color);
+  }
+  .responsible h2 {
+    font-size: 1rem;
+  }
+  .responsible p {
+    font-size: 0.8rem;
+    margin: 0;
+  }
+  .product-footer {
+    padding-block: 2rem;
+    border-top: 1px solid var(--border-color);
+    font-size: 0.82rem;
+  }
+  .product-footer nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem 1.5rem;
+  }
+  dialog {
+    border: 1px solid var(--border-color);
+    border-radius: 0.75rem;
+    max-width: 96vw;
+    max-height: 95vh;
+    padding: 1rem;
+    width: min(96vw, 100rem);
+  }
+  dialog::backdrop {
+    background: rgb(0 0 0 / 75%);
+  }
+  dialog form {
+    text-align: right;
+    margin: 0;
+  }
+  .image-toolbar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+  }
+  .image-toolbar form {
+    margin-left: auto;
+  }
+  .image-toolbar a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    font-size: 0.85rem;
+  }
+  .image-viewport {
+    overflow: auto;
+    max-height: 70vh;
+    max-width: 100%;
+    overscroll-behavior: contain;
+  }
+  dialog img {
+    max-height: 70vh;
+    object-fit: contain;
+    width: auto;
+    margin-inline: auto;
+  }
+  .image-viewport[data-zoomed="true"] img {
+    max-width: none;
+    max-height: none;
+    margin: 0;
+  }
+  dialog .button {
+    min-height: 44px;
+    font-size: 0.8rem;
+  }
+  @media (max-width: 1100px) {
+    .hero-layout {
+      grid-template-columns: 1fr;
+      grid-template-areas: "title" "chart" "description";
+      gap: 2rem;
+    }
+    h1 {
+      max-width: 25ch;
+    }
+    .hero-chart {
+      max-width: 60rem;
+    }
+    .benefit-grid,
+    .step-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+  @media (max-width: 767px) {
+    .gallery,
+    .platform-grid,
+    .detail-grid,
+    .setup-grid {
+      grid-template-columns: 1fr;
+    }
+    .setup-grid {
+      gap: 2rem;
+    }
+    .detail-grid article:last-child {
+      grid-column: auto;
+    }
+    .product-brand span {
+      display: block;
+    }
+    .section-nav .container {
+      gap: 0.5rem 1rem;
+    }
+    .highlights {
+      display: grid;
+    }
+    .platform-card {
+      padding: 1.5rem;
+    }
+    .actions .button {
+      width: auto;
+    }
+    .gallery {
+      gap: 1.5rem;
+    }
+    .section {
+      padding-block: 3rem;
+    }
+    .back-link {
+      margin-bottom: 1rem;
+    }
+    .product-hero {
+      padding-top: 1rem;
+    }
+    .hero-layout {
+      gap: 1rem;
+    }
+    .hero-copy .eyebrow {
+      margin-bottom: 0.65rem;
+    }
+    .product-name {
+      margin-bottom: 0.7rem;
+    }
+    .hero-copy h1 {
+      margin-bottom: 0;
+      font-size: clamp(1.8rem, 4vw, 2.4rem);
+    }
+  }
+  @media (max-width: 420px) {
+    .benefit-grid,
+    .step-grid {
+      grid-template-columns: 1fr;
+    }
+    .actions .button {
+      width: 100%;
+    }
+    .header-row {
+      gap: 0.7rem;
+    }
+    .header-row nav {
+      font-size: 0.8rem;
+    }
+  }
+</style>
