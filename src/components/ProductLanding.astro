@@ -3,6 +3,8 @@ import { getEntry } from "astro:content";
 import { Font, Image } from "astro:assets";
 import SEOHead from "./SEOHead.astro";
 import ProductIcon from "./ProductIcon.astro";
+import productCover from "../assets/products/mc-support-resistance/brand-cover.webp";
+import productLogo from "../assets/products/mc-support-resistance/brand-logo.webp";
 import mt4Chart from "../assets/products/mc-support-resistance/mt4-chart.webp";
 import mt5Chart from "../assets/products/mc-support-resistance/mt5-chart.webp";
 import mt4Settings from "../assets/products/mc-support-resistance/mt4-settings.webp";
@@ -19,6 +21,10 @@ const product = entry.data;
 const copy = product.locales[lang];
 const ui = copy.ui;
 const canonical = new URL(copy.path, Astro.site!);
+const coverAlt =
+  lang === "es"
+    ? "Mc Support Resistance, indicador para MetaTrader 4 y 5"
+    : "Mc Support Resistance, indicator for MetaTrader 4 and 5";
 const benefitIcons = ["layers", "chart", "clock", "bell"] as const;
 const gallery = [
   {
@@ -90,12 +96,21 @@ const navigation = [
     <meta property="og:description" content={copy.description} />
     <meta property="og:url" content={canonical} />
     <meta property="og:locale" content={lang === "es" ? "es_PE" : "en_US"} />
-    <meta property="og:image" content={new URL(mt4Chart.src, Astro.site!)} />
-    <meta property="og:image:alt" content={gallery[0].alt} />
+    <meta
+      property="og:image"
+      content={new URL(productCover.src, Astro.site!)}
+    />
+    <meta property="og:image:alt" content={coverAlt} />
+    <meta property="og:image:width" content={String(productCover.width)} />
+    <meta property="og:image:height" content={String(productCover.height)} />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={copy.seoTitle} />
     <meta name="twitter:description" content={copy.description} />
-    <meta name="twitter:image" content={new URL(mt4Chart.src, Astro.site!)} />
+    <meta
+      name="twitter:image"
+      content={new URL(productCover.src, Astro.site!)}
+    />
+    <meta name="twitter:image:alt" content={coverAlt} />
   </head>
   <body>
     <a class="skip-link" href="#main-content">{ui.skip}</a>
@@ -135,23 +150,19 @@ const navigation = [
               <p class="product-name">{product.name}</p>
               <h1>{copy.headline}</h1>
             </div>
-            <figure class="hero-chart">
-              <a
-                href={mt4Chart.src}
-                data-screenshot
-                aria-label={`${ui.enlarge}: ${gallery[0].alt}`}
-              >
-                <Image
-                  src={mt4Chart}
-                  alt={gallery[0].alt}
-                  width={960}
-                  widths={[480, 760, 960]}
-                  sizes="(min-width: 1100px) 52vw, 100vw"
-                  loading="eager"
-                  fetchpriority="high"
-                />
-              </a>
-              <figcaption><span>MT4 · 1.4</span> GBPUSD · MN1</figcaption>
+            <figure class="hero-cover">
+              <Image
+                src={productLogo}
+                alt={coverAlt}
+                width={760}
+                widths={[360, 540, 760]}
+                sizes="(min-width: 1101px) 52vw, 100vw"
+                loading="eager"
+                fetchpriority="high"
+              />
+              <figcaption>
+                <span>Mc Support Resistance</span> MT4 · MT5
+              </figcaption>
             </figure>
             <div class="hero-description">
               <p class="product-lead">{copy.intro}</p>
@@ -584,28 +595,28 @@ const navigation = [
     line-height: 1.85;
     color: var(--subtitle-color);
   }
-  .hero-chart {
+  .hero-cover {
     grid-area: chart;
     padding: 0.65rem;
     border: 1px solid var(--border-color);
     border-radius: 1rem;
-    background: #fff;
+    background: #edf7fd;
     box-shadow: var(--shadow-soft);
     margin: 0;
   }
-  .hero-chart img {
+  .hero-cover img {
     width: 100%;
     height: auto;
     border-radius: 0.5rem;
   }
-  .hero-chart figcaption {
+  .hero-cover figcaption {
     display: flex;
     justify-content: space-between;
     padding: 0.7rem 0.3rem 0.15rem;
     font-size: 0.75rem;
     color: var(--subtitle-color);
   }
-  .hero-chart figcaption span {
+  .hero-cover figcaption span {
     font-weight: 700;
     color: var(--accent-strong);
   }
@@ -927,7 +938,7 @@ const navigation = [
     h1 {
       max-width: 25ch;
     }
-    .hero-chart {
+    .hero-cover {
       max-width: 60rem;
     }
     .benefit-grid,
