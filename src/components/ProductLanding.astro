@@ -4,7 +4,8 @@ import { Font, Image } from "astro:assets";
 import SEOHead from "./SEOHead.astro";
 import ProductIcon from "./ProductIcon.astro";
 import productCover from "../assets/products/mc-support-resistance/brand-cover.webp";
-import productLogo from "../assets/products/mc-support-resistance/brand-logo.webp";
+import heroEs from "../assets/products/mc-support-resistance/hero-illustration-es.webp";
+import heroEn from "../assets/products/mc-support-resistance/hero-illustration-en.webp";
 import mt4Chart from "../assets/products/mc-support-resistance/mt4-chart.webp";
 import mt5Chart from "../assets/products/mc-support-resistance/mt5-chart.webp";
 import mt4Settings from "../assets/products/mc-support-resistance/mt4-settings.webp";
@@ -15,6 +16,11 @@ interface Props {
   lang: "es" | "en";
 }
 const { lang } = Astro.props;
+const heroImage = lang === "es" ? heroEs : heroEn;
+const heroAlt =
+  lang === "es"
+    ? "Ilustración de Mc Support Resistance con su identidad visual y niveles de soporte y resistencia. Disponible en MQL5 Market."
+    : "Illustration of Mc Support Resistance with its visual identity and support and resistance levels. Available on MQL5 Market.";
 const entry = await getEntry("products", "mc-support-resistance");
 if (!entry) throw new Error("Product content is missing");
 const product = entry.data;
@@ -152,10 +158,10 @@ const navigation = [
             </div>
             <figure class="hero-cover">
               <Image
-                src={productLogo}
-                alt={coverAlt}
+                src={heroImage}
+                alt={heroAlt}
                 width={760}
-                widths={[360, 540, 760]}
+                widths={[360, 540, 760, 1080, 1200]}
                 sizes="(min-width: 1101px) 52vw, 100vw"
                 loading="eager"
                 fetchpriority="high"
