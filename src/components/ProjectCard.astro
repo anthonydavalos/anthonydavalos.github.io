@@ -1,13 +1,11 @@
 ---
 import type { Project } from "../data/projects";
-import supportResistanceLogo from "../assets/products/mc-support-resistance/brand-logo.webp";
 
 interface Props {
   project: Project;
 }
 
 const { project } = Astro.props;
-const isSupportResistance = project.id === "mc-support-resistance";
 const statusLabels = {
   featured: "Destacado",
   draft: "Borrador",
@@ -16,13 +14,13 @@ const statusLabels = {
 } as const;
 ---
 
-<article
-  class={`project-card project-card--${project.status}${isSupportResistance ? " project-card--support-resistance" : ""}`}
->
+<article class={`project-card project-card--${project.status}`}>
   <div class="project-card__visual">
     <img
-      src={isSupportResistance ? supportResistanceLogo.src : project.imageSrc}
+      src={project.imageSrc}
       alt={project.imageAlt}
+      width="1200"
+      height="800"
       loading="lazy"
     />
   </div>
@@ -90,25 +88,6 @@ const statusLabels = {
     min-height: 10rem;
     object-fit: cover;
     object-position: center;
-  }
-
-  .project-card--support-resistance .project-card__visual {
-    aspect-ratio: 3 / 2;
-    display: grid;
-    place-items: center;
-    padding: clamp(0.75rem, 3%, 1.5rem);
-    background:
-      radial-gradient(circle at 72% 25%, #d6efff 0, transparent 42%),
-      radial-gradient(circle at 16% 88%, #e5f5ff 0, transparent 38%), #fff;
-  }
-
-  .project-card--support-resistance .project-card__visual img {
-    width: auto;
-    height: 100%;
-    min-height: 0;
-    max-width: 100%;
-    max-height: 100%;
-    object-fit: contain;
   }
 
   .project-card__content {
